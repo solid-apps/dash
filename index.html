@@ -36,6 +36,39 @@
   <main id="app" aria-live="polite"></main>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
+  <!-- Board as a structured-data island. dash renders this when no pod board
+       is loaded (signed out, or ?src= not given), and seeds a fresh pod from
+       it on first sign-in. Edit this JSON-LD to author a static board — or
+       point dash at any published dash:Board doc with ?src=<url>. -->
+  <script type="application/ld+json" id="board">
+  {
+    "@context": { "dash": "https://solid-apps.github.io/dash/ns#" },
+    "@type": "dash:Board",
+    "title": "dash",
+    "search": "duckduckgo",
+    "groups": [
+      { "name": "Solid Apps", "columns": 2, "services": [
+        { "name": "glass", "href": "https://solid-apps.github.io/glass/", "subtitle": "liquid-glass desktop", "icon": "❖" },
+        { "name": "home", "href": "https://solid-apps.github.io/home/", "subtitle": "app launcher", "icon": "🏠" },
+        { "name": "portal", "href": "https://solid-apps.github.io/portal/", "subtitle": "link directory", "icon": "🧭" },
+        { "name": "explorer", "href": "https://solid-apps.github.io/explorer/", "subtitle": "pod file browser", "icon": "📁" }
+      ]},
+      { "name": "Media", "columns": 1, "services": [
+        { "name": "music", "href": "https://solid-apps.github.io/music/", "subtitle": "pod music player", "icon": "🎵" },
+        { "name": "video", "href": "https://solid-apps.github.io/video/", "subtitle": "pod video", "icon": "🎬" },
+        { "name": "gallery", "href": "https://solid-apps.github.io/gallery/", "subtitle": "photo albums", "icon": "🖼️" }
+      ]}
+    ],
+    "bookmarks": [
+      { "name": "Solid", "links": [
+        { "name": "solidproject.org", "href": "https://solidproject.org" },
+        { "name": "MDN", "href": "https://developer.mozilla.org" },
+        { "name": "GitHub", "href": "https://github.com/solid-apps" }
+      ]}
+    ]
+  }
+  </script>
+
   <!-- xlogin: one-tag Solid/Nostr auth (same widget the estate shares).
        Loaded before app.js so auth listeners are wired before it restores
        a session. dash works signed-out as a read-only demo. -->

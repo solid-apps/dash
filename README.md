@@ -66,6 +66,26 @@ One JSON-LD file, human-readable, at `‹pod›/public/dash/board.jsonld`:
 
 Edit it in-app, or edit the file directly — dash re-reads it live either way.
 
+### Powered by a data island
+
+The board is also a **structured-data island**: the page ships an inline
+`<script type="application/ld+json" id="board">` holding a `dash:Board`. That
+island is what powers the signed-out demo, and it **seeds your pod** the first
+time you sign in — so you can author a whole board by editing HTML, sign in,
+and it becomes yours.
+
+dash reads its board in order of authority:
+
+1. **your pod board** (signed in) — writable, live-synced;
+2. **`?src=<url>`** — fetch and render *any* published `dash:Board` document
+   (read-only), so dash doubles as a viewer for boards hosted anywhere;
+3. the **inline data island**;
+4. a built-in sample.
+
+Because a `dash:Board` is just a typed JSON-LD resource, a board saved on your
+pod can also be opened by the estate's shells (glass, hub) and dispatched to a
+dash pane by `rdf:type` — the same SLIP-48 flow the rest of the suite uses.
+
 ## Architecture
 
 One `index.html` + `style.css` + `app.js`, no build step. Auth is the shared

@@ -159,7 +159,31 @@ function saveBoard() {
     .catch((e) => { toast('Couldn’t save to your pod — ' + e.message, { error: true }); throw e; });
 }
 
-/* ------------------------------ the sample board ------------------------------ */
+/* ------------------------------ static board sources ------------------------------ */
+
+// A structured-data island: <script type="application/ld+json" id="board">.
+// This is how the demo is powered, and what seeds a fresh pod on first
+// sign-in. Returns a normalized board, or null if absent/unparseable.
+function islandBoard() {
+  const tag = document.getElementById('board') ||
+    document.querySelector('script[type="application/ld+json"]');
+  if (!tag) return null;
+  try {
+    const data = JSON.parse(tag.textContent);
+    const b = normalize(data);
+    return (b.groups.length || b.bookmarks.length) ? b : null;
+  } catch { return null; }
+}
+
+// ?src=<url> — fetch and render any published dash:Board document, so dash
+// doubles as a viewer for boards that live anywhere (pod or not).
+function srcParam() {
+  try { const s = new URL(location.href).searchParams.get('src'); return s && safeUrl(s); } catch { return null; }
+}
+
+// The best available static board: the island, else the built-in sample.
+function staticBoard() { return islandBoard() || sampleBoard(); }
+
 // Shown signed-out (a real, clickable demo) and used to seed a brand-new pod.
 function sampleBoard() {
   return normalize({
@@ -202,10 +226,12 @@ function render() {
 
   const wrap = el('div');
 
-  // demo banner when signed out
-  if (readOnly && !me()) {
-    wrap.appendChild(el('div', { class: 'demo-note' },
-      'Demo board — sign in to load and edit your own dashboard, stored on your Solid pod.'));
+  // context banner while read-only (demo, or viewing a shared ?src= board)
+  if (readOnly) {
+    const note = viewingSrc
+      ? 'Viewing a shared board (read-only). Sign in to build your own on your pod.'
+      : (!me() ? 'Demo board — sign in to load and edit your own dashboard, stored on your Solid pod.' : null);
+    if (note) wrap.appendChild(el('div', { class: 'demo-note' }, note));
   }
 
   wrap.appendChild(renderHead());
@@ -623,14 +649,28 @@ function stopSync() { if (unsub) { unsub(); unsub = null; } subUrl = null; pendi
 
 editBtn.addEventListener('click', () => { editing = !editing; render(); if (!editing && pendingSync) { pendingSync = false; applyRemote(); } });
 
-function showDemo() {
-  readOnly = true; editing = false; board = sampleBoard();
+const SRC = srcParam();
+let viewingSrc = false;   // rendering a ?src= board (shared, read-only)
+
+// Read-only render from a static source: a ?src= document if given, else the
+// inline data island, else the built-in sample. Paints instantly from the
+// island/sample, then swaps in the ?src= board once it loads.
+function showStatic() {
+  readOnly = true; editing = false; viewingSrc = false;
+  board = staticBoard();
   render();
+  if (SRC) {
+    viewingSrc = true;
+    K.loadJson(fetch, SRC, { headers: { Accept: 'application/ld+json' } }).then((r) => {
+      if (r.ok && !r.missing) { board = normalize(r.data); render(); }
+      else toast('Couldn’t load that board — ' + (r.error ? r.error.message : 'HTTP ' + r.status), { error: true });
+    });
+  }
 }
 
 function start() {
   const webid = me();
-  if (!webid) { showDemo(); return; }
+  if (!webid) { showStatic(); return; }
   app.replaceChildren(el('div', { class: 'loading' }, 'Loading your dashboard…'));
   discoverStorage(webid).then((storage) => {
     if (!storage) throw new Error('could not find your pod storage');
@@ -638,8 +678,9 @@ function start() {
     return K.loadJson(authFetch, URLDOC, { headers: { Accept: 'application/ld+json' } }).then((r) => {
       readOnly = false;
       if (r.missing) {
-        // First run: seed a starter board so a new pod isn't blank.
-        board = sampleBoard();
+        // First run: seed the pod from the data island (or the sample) so a
+        // new pod isn't blank — author a board in HTML, sign in, it's yours.
+        board = staticBoard();
         return ensureContainer(storage + 'public/dash/').then(() => saveBoard().catch(() => {}));
       }
       if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -656,12 +697,13 @@ function start() {
 function retryBtn() { const b = el('button', { class: 'btn', type: 'button' }, 'Retry'); b.addEventListener('click', start); return b; }
 
 document.addEventListener('xlogin', start);
-document.addEventListener('xlogout', () => { stopSync(); URLDOC = null; showDemo(); });
+document.addEventListener('xlogout', () => { stopSync(); URLDOC = null; showStatic(); });
 
-// xlogin restores sessions asynchronously; render the demo immediately so the
-// page is never blank, then start() re-runs on the xlogin event if signed in.
-showDemo();
-setTimeout(() => { if (me()) start(); }, 600);
+// xlogin restores sessions asynchronously; render the static board (island /
+// ?src= / sample) immediately so the page is never blank, then start() re-runs
+// on the xlogin event if signed in. A ?src= board is always shown as-is.
+showStatic();
+if (!SRC) setTimeout(() => { if (me()) start(); }, 600);
 
 /* ------------------------------ tiny hyperscript ------------------------------ */
 function el(tag, attrs, ...kids) {
