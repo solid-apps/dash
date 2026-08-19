@@ -77,10 +77,14 @@ and it becomes yours.
 dash reads its board in order of authority:
 
 1. **your pod board** (signed in) — writable, live-synced;
-2. **`?src=<url>`** — fetch and render *any* published `dash:Board` document
-   (read-only), so dash doubles as a viewer for boards hosted anywhere;
-3. the **inline data island**;
-4. a built-in sample.
+2. **`?board=<data>`** — the whole board carried *inline* in the URL, so one
+   link is a complete self-contained dashboard (no host, no pod). The **Share**
+   button copies exactly this. Accepts base64url-encoded JSON or raw JSON;
+3. **`?uri=<url>`** — fetch and render *any* published `dash:Board` resource
+   (read-only), so dash doubles as a viewer for boards hosted anywhere.
+   `?src=<url>` is accepted as an alias;
+4. the **inline data island**;
+5. a built-in sample.
 
 Because a `dash:Board` is just a typed JSON-LD resource, a board saved on your
 pod can also be opened by the estate's shells (glass, hub) and dispatched to a

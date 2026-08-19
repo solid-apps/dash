@@ -21,6 +21,22 @@ const app = document.getElementById('app');
 const editBtn = document.getElementById('editBtn');
 const toast = K.toaster(document.getElementById('toast'), 'show');
 
+// "Share" copies a self-contained ?board= link (the whole board encoded in the
+// URL — no host, no pod needed to open it). Created in JS so index.html stays
+// static; shown by render() whenever there's a board worth sharing.
+const shareBtn = el('button', { class: 'tbtn', type: 'button', title: 'Copy a self-contained link to this board' }, 'Share');
+shareBtn.hidden = true;
+document.querySelector('.topbar-r').insertBefore(shareBtn, editBtn);
+shareBtn.addEventListener('click', () => {
+  const link = shareLink();
+  K.copyText(link).then((ok) => {
+    if (!ok) return toast('Couldn’t copy the link', { error: true });
+    toast(link.length > 4000
+      ? 'Share link copied — it’s long (' + link.length + ' chars); some apps may truncate it.'
+      : 'Share link copied to clipboard');
+  });
+});
+
 /* ------------------------------ helpers ------------------------------ */
 
 const esc = K.esc;
@@ -175,10 +191,38 @@ function islandBoard() {
   } catch { return null; }
 }
 
-// ?src=<url> — fetch and render any published dash:Board document, so dash
-// doubles as a viewer for boards that live anywhere (pod or not).
+// ?uri=<url> — fetch and render any published dash:Board *resource*, so dash
+// doubles as a viewer for boards that live anywhere (pod or not). ?uri= is the
+// canonical name (matches the estate's resource-viewers, profile & pilot);
+// ?src= is accepted as a silent alias (markmap/webprompts style).
 function srcParam() {
-  try { const s = new URL(location.href).searchParams.get('src'); return s && safeUrl(s); } catch { return null; }
+  try {
+    const p = new URL(location.href).searchParams;
+    const s = p.get('uri') || p.get('src');
+    return s && safeUrl(s);
+  } catch { return null; }
+}
+
+// ?board=<data> — the board carried *inline* in the URL, so a single link is a
+// whole self-contained dashboard (no host, no pod). Accepts base64url-encoded
+// JSON (what "Copy share link" produces) or raw percent-encoded JSON. UTF-8
+// safe so emoji icons survive the round-trip.
+const NS = 'https://solid-apps.github.io/dash/ns#';
+function b64urlEncode(str) { return btoa(unescape(encodeURIComponent(str))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, ''); }
+function b64urlDecode(s) { return decodeURIComponent(escape(atob(s.replace(/-/g, '+').replace(/_/g, '/')))); }
+function queryBoard() {
+  try {
+    const q = new URL(location.href).searchParams.get('board');  // already %-decoded
+    if (!q) return null;
+    const json = q.trim()[0] === '{' ? q : b64urlDecode(q);
+    const b = normalize(JSON.parse(json));
+    return (b.groups.length || b.bookmarks.length) ? b : null;
+  } catch { return null; }
+}
+// Encode the current board back into a shareable ?board= link.
+function shareLink() {
+  const doc = Object.assign({ '@context': { dash: NS }, '@type': 'dash:Board' }, board);
+  return location.origin + location.pathname + '?board=' + b64urlEncode(JSON.stringify(doc));
 }
 
 // The best available static board: the island, else the built-in sample.
@@ -222,6 +266,7 @@ function render() {
   editBtn.hidden = readOnly;
   editBtn.classList.toggle('on', editing);
   editBtn.textContent = editing ? 'Done' : 'Edit';
+  shareBtn.hidden = !(board.groups.length || board.bookmarks.length);
   document.body.classList.toggle('editing', editing);
 
   const wrap = el('div');
@@ -657,6 +702,9 @@ let viewingSrc = false;   // rendering a ?src= board (shared, read-only)
 // island/sample, then swaps in the ?src= board once it loads.
 function showStatic() {
   readOnly = true; editing = false; viewingSrc = false;
+  // Inline ?board= wins — it's fully self-contained, nothing to fetch.
+  const qb = queryBoard();
+  if (qb) { viewingSrc = true; board = qb; render(); return; }
   board = staticBoard();
   render();
   if (SRC) {
