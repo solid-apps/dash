@@ -6,7 +6,9 @@
   "theme": "auto",
   "accent": "#f43f5e",
   "layout": "auto",
-  "background": null,
+  "background": {
+    "preset": "nebula"
+  },
   "title": "Media",
   "search": "duckduckgo",
   "groups": [

@@ -6,7 +6,9 @@
   "theme": "auto",
   "accent": "#14b8a6",
   "layout": "auto",
-  "background": null,
+  "background": {
+    "preset": "accent"
+  },
   "title": "Productivity",
   "search": "duckduckgo",
   "groups": [

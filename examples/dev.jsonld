@@ -6,7 +6,9 @@
   "theme": "auto",
   "accent": "#8b5cf6",
   "layout": "auto",
-  "background": null,
+  "background": {
+    "preset": "accent"
+  },
   "title": "Dev",
   "search": "duckduckgo",
   "groups": [

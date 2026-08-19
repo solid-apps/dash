@@ -6,7 +6,9 @@
   "theme": "auto",
   "accent": "#6366f1",
   "layout": "3",
-  "background": null,
+  "background": {
+    "preset": "accent"
+  },
   "title": "Homelab",
   "search": "duckduckgo",
   "weather": {

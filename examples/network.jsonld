@@ -6,7 +6,9 @@
   "theme": "auto",
   "accent": "#10b981",
   "layout": "auto",
-  "background": null,
+  "background": {
+    "preset": "aurora"
+  },
   "title": "Network",
   "search": "duckduckgo",
   "groups": [

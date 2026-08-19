@@ -51,14 +51,39 @@ html, body { height: 100%; }
 body {
   font-family: var(--sans);
   color: var(--text);
+  /* rich default mesh — vivid, layered orbs, not flat grey */
   background:
-    radial-gradient(circle at 18% -8%, rgba(110,168,254,0.14), transparent 42%),
-    radial-gradient(circle at 92% 4%, rgba(167,139,250,0.12), transparent 40%),
+    radial-gradient(1100px 780px at 8% -12%, rgba(99,102,241,0.34), transparent 56%),
+    radial-gradient(1000px 720px at 100% 2%, rgba(168,85,247,0.28), transparent 55%),
+    radial-gradient(1200px 820px at 50% 122%, rgba(34,211,238,0.18), transparent 55%),
+    radial-gradient(760px 560px at 88% 92%, rgba(236,72,153,0.16), transparent 55%),
     linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
   background-attachment: fixed;
   min-height: 100%;
   -webkit-font-smoothing: antialiased;
   overflow-wrap: anywhere;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) body {
+    background:
+      radial-gradient(1000px 720px at 8% -12%, rgba(99,102,241,0.22), transparent 56%),
+      radial-gradient(900px 660px at 100% 2%, rgba(168,85,247,0.18), transparent 55%),
+      radial-gradient(1100px 780px at 50% 122%, rgba(14,165,233,0.14), transparent 55%),
+      linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+    background-attachment: fixed;
+  }
+}
+
+/* over a rich background (image or gradient preset) force a dark, legible
+   palette regardless of theme — light text + frosted panels on the artwork */
+body.dark-bg {
+  --bg: #0a0c16;
+  --text: #f2f4fb; --dim: rgba(242,244,251,0.72); --faint: rgba(242,244,251,0.5);
+  --line: rgba(255,255,255,0.10); --line-2: rgba(255,255,255,0.18);
+  --panel: rgba(255,255,255,0.05); --panel-2: rgba(255,255,255,0.09);
+  --unknown: rgba(242,244,251,0.32);
+  --shadow: 0 1px 2px rgba(0,0,0,0.45), 0 14px 34px rgba(0,0,0,0.4);
+  background: var(--bg);
 }
 
 /* ---------- top bar ---------- */
@@ -279,6 +304,14 @@ body.custom-bg .group, body.custom-bg .bm { backdrop-filter: blur(6px); }
 }
 .swatch.on { border-color: var(--text); }
 .swatch.def { background: var(--panel-2); display: grid; place-items: center; font-size: 12px; color: var(--dim); outline: 1px dashed var(--line-2); }
+.bg-presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.bg-preset {
+  width: 48px; height: 30px; border-radius: 8px; cursor: pointer; padding: 0;
+  border: 2px solid transparent; outline: 1px solid var(--line-2); outline-offset: 1px;
+  background-size: cover; background-position: center;
+}
+.bg-preset.on { border-color: var(--text); }
+.bg-preset.none { display: grid; place-items: center; font-size: 13px; color: var(--dim); background: var(--panel-2); outline-style: dashed; }
 
 /* ---------- toast ---------- */
 .toast {

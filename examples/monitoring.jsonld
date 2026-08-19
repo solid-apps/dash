@@ -6,7 +6,9 @@
   "theme": "auto",
   "accent": "#f59e0b",
   "layout": "auto",
-  "background": null,
+  "background": {
+    "preset": "dusk"
+  },
   "title": "Monitoring",
   "search": "duckduckgo",
   "groups": [

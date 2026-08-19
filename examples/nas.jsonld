@@ -6,7 +6,9 @@
   "theme": "auto",
   "accent": "#0ea5e9",
   "layout": "auto",
-  "background": null,
+  "background": {
+    "preset": "ocean"
+  },
   "title": "NAS",
   "search": "duckduckgo",
   "groups": [

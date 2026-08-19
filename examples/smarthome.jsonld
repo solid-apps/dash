@@ -6,7 +6,9 @@
   "theme": "auto",
   "accent": "#f97316",
   "layout": "auto",
-  "background": null,
+  "background": {
+    "preset": "ember"
+  },
   "title": "Smart Home",
   "search": "duckduckgo",
   "groups": [

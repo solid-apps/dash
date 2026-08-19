@@ -85,6 +85,18 @@ function hashColor(s) {
 }
 function hostOf(u) { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return ''; } }
 
+// Built-in background presets — rich, layered gradient meshes (dark-oriented,
+// like the gethomepage showcases). "accent" derives from the board's colour.
+const PRESETS = {
+  aurora: 'radial-gradient(1100px 760px at 12% 6%, rgba(16,185,129,.42), transparent 55%), radial-gradient(1000px 720px at 92% 18%, rgba(6,182,212,.36), transparent 55%), radial-gradient(1200px 820px at 50% 120%, rgba(59,130,246,.26), transparent 55%), linear-gradient(180deg,#04120f,#06101e)',
+  nebula: 'radial-gradient(1100px 760px at 18% 0%, rgba(168,85,247,.44), transparent 55%), radial-gradient(1000px 720px at 92% 26%, rgba(236,72,153,.34), transparent 55%), radial-gradient(1200px 820px at 40% 120%, rgba(99,102,241,.3), transparent 55%), linear-gradient(180deg,#0c0518,#0a0a1e)',
+  dusk: 'radial-gradient(1100px 760px at 14% 112%, rgba(249,115,22,.38), transparent 55%), radial-gradient(1000px 720px at 82% 100%, rgba(236,72,153,.3), transparent 55%), radial-gradient(1100px 820px at 60% -6%, rgba(139,92,246,.3), transparent 55%), linear-gradient(180deg,#170b1f,#0c0716)',
+  ocean: 'radial-gradient(1200px 820px at 18% 0%, rgba(37,99,235,.42), transparent 55%), radial-gradient(1000px 720px at 92% 44%, rgba(20,184,166,.32), transparent 55%), radial-gradient(1000px 760px at 50% 120%, rgba(59,130,246,.2), transparent 55%), linear-gradient(180deg,#04101f,#061427)',
+  ember: 'radial-gradient(1100px 760px at 14% 0%, rgba(239,68,68,.36), transparent 55%), radial-gradient(1000px 720px at 86% 92%, rgba(245,158,11,.3), transparent 55%), linear-gradient(180deg,#170806,#0e0a08)',
+  mono: 'radial-gradient(1200px 860px at 50% -12%, rgba(255,255,255,.07), transparent 55%), linear-gradient(180deg,#0d0f16,#090b11)',
+  accent: 'radial-gradient(1100px 820px at 12% -8%, color-mix(in srgb, var(--accent) 48%, transparent), transparent 55%), radial-gradient(1000px 720px at 95% 20%, color-mix(in srgb, var(--accent) 32%, transparent), transparent 55%), radial-gradient(1000px 760px at 55% 120%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 55%), linear-gradient(180deg,#0a0a14,#0a0c17)'
+};
+
 /* ------------------------------ storage ------------------------------ */
 
 const PIM = 'http://www.w3.org/ns/pim/space#';
@@ -149,11 +161,12 @@ function normalize(raw) {
   if (['auto', '1', '2', '3'].includes(String(raw.layout))) b.layout = String(raw.layout);
   if (raw.background && typeof raw.background === 'object') {
     const bgr = {};
+    if (typeof raw.background.preset === 'string' && PRESETS[raw.background.preset]) bgr.preset = raw.background.preset;
     if (isUrl(raw.background.image)) bgr.image = safeUrl(raw.background.image);
     if (typeof raw.background.color === 'string' && /^#[0-9a-fA-F]{6}$/.test(raw.background.color.trim())) bgr.color = raw.background.color.trim().toLowerCase();
     bgr.blur = Math.max(0, Math.min(10, Math.round(+raw.background.blur || 0)));
     bgr.dim = Math.max(0, Math.min(70, Math.round(+raw.background.dim || 0)));
-    if (bgr.image || bgr.color) b.background = bgr;
+    if (bgr.preset || bgr.image || bgr.color) b.background = bgr;
   }
   if (raw.weather && typeof raw.weather === 'object' && isFinite(+raw.weather.lat) && isFinite(+raw.weather.lon)) {
     b.weather = { lat: +raw.weather.lat, lon: +raw.weather.lon, label: String(raw.weather.label || '').slice(0, 60) };
@@ -305,20 +318,28 @@ function applyTheme() {
 function applyBackground() {
   let layer = document.getElementById('dash-bg');
   const bg = board.background;
+  // image + gradient presets are rich/dark artwork → force the dark palette so
+  // text stays legible over them; a solid colour respects the current theme.
+  const rich = !!(bg && (bg.image || (bg.preset && PRESETS[bg.preset])));
   document.body.classList.toggle('custom-bg', !!bg);
+  document.body.classList.toggle('dark-bg', rich);
   if (!bg) { if (layer) layer.remove(); return; }
   if (!layer) { layer = el('div', { id: 'dash-bg' }); document.body.insertBefore(layer, document.body.firstChild); }
-  if (bg.image) {
-    layer.style.backgroundImage = "url('" + bg.image.replace(/'/g, '%27') + "')";
+  // reset anything a prior kind of background left behind
+  layer.style.background = '';
+  layer.style.filter = 'none';
+  if (bg.preset && PRESETS[bg.preset]) {
+    layer.style.background = PRESETS[bg.preset];
+    layer.style.setProperty('--scrim', '0');
+  } else if (bg.image) {
     layer.style.backgroundColor = 'var(--bg)';
+    layer.style.backgroundImage = "url('" + bg.image.replace(/'/g, '%27') + "')";
     layer.style.filter = bg.blur ? 'blur(' + bg.blur + 'px)' : 'none';
     // "dim" is a theme-coloured scrim (var(--bg)) so text keeps contrast in
     // either theme — dark scrim under light text, light scrim under dark text.
     layer.style.setProperty('--scrim', ((bg.dim || 0) / 100).toFixed(2));
   } else {
-    layer.style.backgroundImage = 'none';
     layer.style.backgroundColor = bg.color;
-    layer.style.filter = bg.blur ? 'blur(' + bg.blur + 'px)' : 'none';
     layer.style.setProperty('--scrim', '0');
   }
 }
@@ -830,10 +851,29 @@ function appearanceModal() {
   lf.appendChild(lseg);
   box.appendChild(lf);
 
-  // background image + blur/dim
+  // background — built-in gradient presets, or your own image
   const bf = el('div', { class: 'field' });
-  bf.appendChild(el('label', {}, 'Background image URL (blank = default)'));
-  const bImg = el('input', { type: 'text', placeholder: 'https://…/photo.jpg' });
+  bf.appendChild(el('label', {}, 'Background'));
+  const prow = el('div', { class: 'bg-presets' });
+  const pbtns = {};
+  const markBg = (key) => Object.keys(pbtns).forEach((k) => pbtns[k].classList.toggle('on', k === key));
+  const none = el('button', { class: 'bg-preset none', type: 'button', title: 'Default (theme gradient)' }, '∅');
+  none.addEventListener('click', () => {
+    board.background = null; bImg.value = ''; blur.value = '0'; dim.value = '0';
+    applyBackground(); markBg('none');
+  });
+  pbtns.none = none; prow.appendChild(none);
+  Object.keys(PRESETS).forEach((key) => {
+    const pb = el('button', { class: 'bg-preset', type: 'button', title: key });
+    pb.style.background = PRESETS[key];
+    pb.addEventListener('click', () => {
+      board.background = { preset: key }; bImg.value = '';
+      applyBackground(); markBg(key);
+    });
+    pbtns[key] = pb; prow.appendChild(pb);
+  });
+  bf.appendChild(prow);
+  const bImg = el('input', { type: 'text', placeholder: 'or a background image URL — https://…/photo.jpg' });
   bImg.value = (board.background && board.background.image) || '';
   bf.appendChild(bImg);
   box.appendChild(bf);
@@ -846,14 +886,16 @@ function appearanceModal() {
   dimW.appendChild(dim);
   brow.appendChild(blurW); brow.appendChild(dimW);
   box.appendChild(brow);
-  const applyBg = () => {
+  const applyImg = () => {
     const u = bImg.value.trim();
     board.background = (u && isUrl(u)) ? { image: safeUrl(u), blur: +blur.value, dim: +dim.value } : null;
     applyBackground();
+    markBg(board.background ? '__image' : 'none');
   };
-  bImg.addEventListener('input', applyBg);
-  blur.addEventListener('input', applyBg);
-  dim.addEventListener('input', applyBg);
+  bImg.addEventListener('input', applyImg);
+  blur.addEventListener('input', () => { if (board.background && board.background.image) applyImg(); });
+  dim.addEventListener('input', () => { if (board.background && board.background.image) applyImg(); });
+  markBg(board.background ? (board.background.preset || (board.background.image ? '__image' : 'none')) : 'none');
 
   const actions = el('div', { class: 'modal-actions' });
   actions.appendChild(el('div', {}));
