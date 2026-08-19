@@ -5,6 +5,8 @@
   "@type": "dash:Board",
   "theme": "auto",
   "accent": "#f97316",
+  "layout": "auto",
+  "background": null,
   "title": "Smart Home",
   "search": "duckduckgo",
   "groups": [
@@ -16,19 +18,19 @@
           "name": "Home Assistant",
           "href": "https://home-assistant.io",
           "subtitle": "Automation hub",
-          "icon": "🏠"
+          "icon": "di:home-assistant"
         },
         {
           "name": "Node-RED",
           "href": "https://nodered.org",
           "subtitle": "Flows",
-          "icon": "🧩"
+          "icon": "di:node-red"
         },
         {
           "name": "openHAB",
           "href": "https://openhab.org",
           "subtitle": "Automation",
-          "icon": "🔧"
+          "icon": "di:openhab"
         }
       ]
     },
@@ -40,19 +42,19 @@
           "name": "Zigbee2MQTT",
           "href": "https://zigbee2mqtt.io",
           "subtitle": "Zigbee bridge",
-          "icon": "📡"
+          "icon": "di:zigbee2mqtt"
         },
         {
           "name": "ESPHome",
           "href": "https://esphome.io",
           "subtitle": "ESP devices",
-          "icon": "🔌"
+          "icon": "di:esphome"
         },
         {
           "name": "Mosquitto",
           "href": "https://mosquitto.org",
           "subtitle": "MQTT broker",
-          "icon": "📨"
+          "icon": "di:mosquitto"
         }
       ]
     },
@@ -64,7 +66,7 @@
           "name": "Frigate",
           "href": "https://frigate.video",
           "subtitle": "NVR + AI",
-          "icon": "🎥"
+          "icon": "di:frigate"
         },
         {
           "name": "Scrypted",
@@ -82,7 +84,7 @@
           "name": "Grafana",
           "href": "https://grafana.com",
           "subtitle": "Energy graphs",
-          "icon": "📊"
+          "icon": "di:grafana"
         },
         {
           "name": "Emporia",

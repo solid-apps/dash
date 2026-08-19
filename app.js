@@ -127,7 +127,7 @@ function ensureContainer(u) {
 // Kept deliberately simple: groups of services, groups of bookmarks, and a
 // couple of widget settings.
 function emptyBoard() {
-  return { '@type': 'dash:Board', title: 'Dashboard', search: 'duckduckgo', theme: 'auto', accent: null, weather: null, groups: [], bookmarks: [] };
+  return { '@type': 'dash:Board', title: 'Dashboard', search: 'duckduckgo', theme: 'auto', accent: null, layout: 'auto', background: null, weather: null, groups: [], bookmarks: [] };
 }
 
 // Coerce whatever the pod hands back into a valid board (untrusted input).
@@ -138,13 +138,22 @@ function normalize(raw) {
   if (['duckduckgo', 'google', 'brave', 'bing', 'kagi'].includes(raw.search)) b.search = raw.search;
   if (['auto', 'dark', 'light'].includes(raw.theme)) b.theme = raw.theme;
   if (typeof raw.accent === 'string' && /^#[0-9a-fA-F]{6}$/.test(raw.accent.trim())) b.accent = raw.accent.trim().toLowerCase();
+  if (['auto', '1', '2', '3'].includes(String(raw.layout))) b.layout = String(raw.layout);
+  if (raw.background && typeof raw.background === 'object') {
+    const bgr = {};
+    if (isUrl(raw.background.image)) bgr.image = safeUrl(raw.background.image);
+    if (typeof raw.background.color === 'string' && /^#[0-9a-fA-F]{6}$/.test(raw.background.color.trim())) bgr.color = raw.background.color.trim().toLowerCase();
+    bgr.blur = Math.max(0, Math.min(10, Math.round(+raw.background.blur || 0)));
+    bgr.dim = Math.max(0, Math.min(70, Math.round(+raw.background.dim || 0)));
+    if (bgr.image || bgr.color) b.background = bgr;
+  }
   if (raw.weather && typeof raw.weather === 'object' && isFinite(+raw.weather.lat) && isFinite(+raw.weather.lon)) {
     b.weather = { lat: +raw.weather.lat, lon: +raw.weather.lon, label: String(raw.weather.label || '').slice(0, 60) };
   }
   const groups = Array.isArray(raw.groups) ? raw.groups : [];
   b.groups = groups.slice(0, 40).map((g) => ({
     name: String((g && g.name) || 'Services').slice(0, 60),
-    columns: g && +g.columns === 2 ? 2 : 1,
+    columns: g && [2, 3, 4].includes(+g.columns) ? +g.columns : 1,
     services: (Array.isArray(g && g.services) ? g.services : []).slice(0, 60).map(normSvc).filter(Boolean)
   }));
   const bms = Array.isArray(raw.bookmarks) ? raw.bookmarks : [];
@@ -283,8 +292,32 @@ function applyTheme() {
   else root.style.removeProperty('--accent');
 }
 
+// A fixed background layer (image with blur/dim, or a solid colour) behind the
+// content; falls back to the CSS gradient when the board sets none.
+function applyBackground() {
+  let layer = document.getElementById('dash-bg');
+  const bg = board.background;
+  document.body.classList.toggle('custom-bg', !!bg);
+  if (!bg) { if (layer) layer.remove(); return; }
+  if (!layer) { layer = el('div', { id: 'dash-bg' }); document.body.insertBefore(layer, document.body.firstChild); }
+  if (bg.image) {
+    layer.style.backgroundImage = "url('" + bg.image.replace(/'/g, '%27') + "')";
+    layer.style.backgroundColor = 'var(--bg)';
+    layer.style.filter = bg.blur ? 'blur(' + bg.blur + 'px)' : 'none';
+    // "dim" is a theme-coloured scrim (var(--bg)) so text keeps contrast in
+    // either theme — dark scrim under light text, light scrim under dark text.
+    layer.style.setProperty('--scrim', ((bg.dim || 0) / 100).toFixed(2));
+  } else {
+    layer.style.backgroundImage = 'none';
+    layer.style.backgroundColor = bg.color;
+    layer.style.filter = bg.blur ? 'blur(' + bg.blur + 'px)' : 'none';
+    layer.style.setProperty('--scrim', '0');
+  }
+}
+
 function render() {
   applyTheme();
+  applyBackground();
   if (clockTimer) { clearInterval(clockTimer); clockTimer = null; }
   app.replaceChildren();
   editBtn.hidden = readOnly;
@@ -311,6 +344,7 @@ function render() {
   wrap.appendChild(renderSearch());
 
   const groups = el('div', { class: 'groups' });
+  if (board.layout && board.layout !== 'auto') groups.style.gridTemplateColumns = 'repeat(' + board.layout + ', minmax(0,1fr))';
   board.groups.forEach((g, gi) => groups.appendChild(renderGroup(g, gi)));
   wrap.appendChild(groups);
 
@@ -400,27 +434,52 @@ function renderSearch() {
   return bar;
 }
 
-function iconTile(node, name, icon, href, size) {
-  // Precedence: explicit icon URL → emoji/letter → auto favicon → glyph.
+// Icon packs — opt-in, CORS-friendly SVGs from a public CDN. "di:" is
+// Dashboard Icons (full-colour self-hosted service logos, the gethomepage
+// pack); "si:" is Simple Icons (monochrome brand marks). The app stays
+// dependency-free unless a board actually uses a pack (emoji is the default).
+const ICON_CDN = {
+  di: (n) => 'https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/' + n + '.svg',
+  si: (n) => 'https://cdn.jsdelivr.net/npm/simple-icons/icons/' + n + '.svg'
+};
+function packSrc(icon) {
+  const m = /^(di|si):(.+)$/.exec(String(icon).trim());
+  if (!m) return null;
+  const n = m[2].toLowerCase().replace(/[^a-z0-9._-]/g, '');
+  return n ? ICON_CDN[m[1]](n) : null;
+}
+// icon field: "di:<slug>" / "si:<slug>" (packs), an image URL, an emoji or
+// letter, or blank (auto: the service's own favicon, then a letter). Packs,
+// URLs and favicons render on a light "logo chip"; emoji/letters on a coloured
+// gradient tile — the gethomepage look.
+function iconTile(node, name, icon, href) {
   const [c1, c2] = hashColor(name);
-  node.style.background = 'linear-gradient(145deg,' + c2 + ',' + c1 + ')';
-  const glyph = () => { node.textContent = (icon && !isUrl(icon) && icon) || (name[0] || '?').toUpperCase(); };
-  const tryImg = (src, onfail) => {
+  const glyph = () => {
+    node.classList.remove('logo');
+    node.style.background = 'linear-gradient(145deg,' + c2 + ',' + c1 + ')';
+    node.replaceChildren();
+    node.textContent = (icon && !packSrc(icon) && !isUrl(icon) && icon) || (name[0] || '?').toUpperCase();
+  };
+  const logo = (src) => {
+    node.classList.add('logo');
+    node.style.background = '';
     const img = el('img', { alt: '', loading: 'lazy' });
     img.src = src;
-    img.addEventListener('error', () => { img.remove(); onfail(); });
+    img.addEventListener('error', () => { img.remove(); glyph(); });
     node.appendChild(img);
   };
-  if (icon && isUrl(icon)) return tryImg(safeUrl(icon), glyph);
+  const ps = icon && packSrc(icon);
+  if (ps) return logo(ps);
+  if (icon && isUrl(icon)) return logo(safeUrl(icon));
   if (icon) return glyph();
   // No explicit icon: try the service's own favicon, fall back to a glyph.
   const origin = (() => { try { return new URL(href).origin; } catch { return null; } })();
-  if (origin) return tryImg(origin + '/favicon.ico', glyph);
+  if (origin) return logo(origin + '/favicon.ico');
   glyph();
 }
 
 function renderGroup(g, gi) {
-  const box = el('div', { class: 'group' + (g.columns === 2 ? ' cols-2' : '') });
+  const box = el('div', { class: 'group' + (g.columns > 1 ? ' cols-' + g.columns : '') });
   const h = el('div', { class: 'group-h' });
   const title = el('h2');
   title.textContent = g.name;
@@ -431,8 +490,8 @@ function renderGroup(g, gi) {
   h.appendChild(title);
   if (editing) {
     const ga = el('div', { class: 'ga' });
-    const colBtn = el('button', { class: 'ic-btn', type: 'button', title: 'Toggle columns' }, g.columns === 2 ? '▤' : '▥');
-    colBtn.addEventListener('click', () => { g.columns = g.columns === 2 ? 1 : 2; saveBoard(); render(); });
+    const colBtn = el('button', { class: 'ic-btn', type: 'button', title: 'Columns (now ' + g.columns + ')' }, g.columns + '⁞');
+    colBtn.addEventListener('click', () => { g.columns = g.columns >= 4 ? 1 : g.columns + 1; saveBoard(); render(); });
     const del = el('button', { class: 'ic-btn', type: 'button', title: 'Delete group' }, '✕');
     del.addEventListener('click', () => { if (confirm('Delete group "' + g.name + '"?')) { board.groups.splice(gi, 1); saveBoard(); render(); } });
     ga.appendChild(colBtn); ga.appendChild(del);
@@ -743,6 +802,49 @@ function appearanceModal() {
   markSel(board.accent);
   af.appendChild(sw);
   box.appendChild(af);
+
+  // group columns (board-level layout)
+  const lf = el('div', { class: 'field' });
+  lf.appendChild(el('label', {}, 'Group columns'));
+  const lseg = el('div', { class: 'seg' });
+  ['auto', '1', '2', '3'].forEach((v) => {
+    const b = el('button', { type: 'button' }, v === 'auto' ? 'Auto' : v);
+    if ((board.layout || 'auto') === v) b.classList.add('on');
+    b.addEventListener('click', () => {
+      board.layout = v;
+      lseg.querySelectorAll('button').forEach((x) => x.classList.remove('on'));
+      b.classList.add('on');
+      render();  // re-lays the groups grid; the modal (a body child) survives
+    });
+    lseg.appendChild(b);
+  });
+  lf.appendChild(lseg);
+  box.appendChild(lf);
+
+  // background image + blur/dim
+  const bf = el('div', { class: 'field' });
+  bf.appendChild(el('label', {}, 'Background image URL (blank = default)'));
+  const bImg = el('input', { type: 'text', placeholder: 'https://…/photo.jpg' });
+  bImg.value = (board.background && board.background.image) || '';
+  bf.appendChild(bImg);
+  box.appendChild(bf);
+  const brow = el('div', { class: 'field inline' });
+  const blurW = el('div', {}); blurW.appendChild(el('label', {}, 'Blur'));
+  const blur = el('input', { type: 'range', min: '0', max: '10', value: String((board.background && board.background.blur) || 0) });
+  blurW.appendChild(blur);
+  const dimW = el('div', {}); dimW.appendChild(el('label', {}, 'Dim'));
+  const dim = el('input', { type: 'range', min: '0', max: '70', value: String((board.background && board.background.dim) || 0) });
+  dimW.appendChild(dim);
+  brow.appendChild(blurW); brow.appendChild(dimW);
+  box.appendChild(brow);
+  const applyBg = () => {
+    const u = bImg.value.trim();
+    board.background = (u && isUrl(u)) ? { image: safeUrl(u), blur: +blur.value, dim: +dim.value } : null;
+    applyBackground();
+  };
+  bImg.addEventListener('input', applyBg);
+  blur.addEventListener('input', applyBg);
+  dim.addEventListener('input', applyBg);
 
   const actions = el('div', { class: 'modal-actions' });
   actions.appendChild(el('div', {}));

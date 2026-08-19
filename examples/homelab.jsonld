@@ -5,6 +5,8 @@
   "@type": "dash:Board",
   "theme": "auto",
   "accent": "#6366f1",
+  "layout": "3",
+  "background": null,
   "title": "Homelab",
   "search": "duckduckgo",
   "weather": {
@@ -21,25 +23,25 @@
           "name": "Jellyfin",
           "href": "https://jellyfin.org",
           "subtitle": "Movies & TV",
-          "icon": "🎬"
+          "icon": "di:jellyfin"
         },
         {
           "name": "Plex",
           "href": "https://plex.tv",
           "subtitle": "Media server",
-          "icon": "🎞️"
+          "icon": "di:plex"
         },
         {
           "name": "Sonarr",
           "href": "https://sonarr.tv",
           "subtitle": "TV automation",
-          "icon": "📺"
+          "icon": "di:sonarr"
         },
         {
           "name": "Radarr",
           "href": "https://radarr.video",
           "subtitle": "Movie automation",
-          "icon": "🎥"
+          "icon": "di:radarr"
         }
       ]
     },
@@ -51,21 +53,21 @@
           "name": "Pi-hole",
           "href": "https://pi-hole.net",
           "subtitle": "DNS ad-block",
-          "icon": "🛑",
+          "icon": "di:pi-hole",
           "ping": true
         },
         {
           "name": "AdGuard Home",
           "href": "https://adguard.com/adguard-home",
           "subtitle": "DNS filtering",
-          "icon": "🛡️",
+          "icon": "di:adguard-home",
           "ping": true
         },
         {
           "name": "UniFi",
           "href": "https://ui.com",
           "subtitle": "Network controller",
-          "icon": "📡"
+          "icon": "di:unifi"
         }
       ]
     },
@@ -77,20 +79,20 @@
           "name": "Grafana",
           "href": "https://grafana.com",
           "subtitle": "Dashboards",
-          "icon": "📊"
+          "icon": "di:grafana"
         },
         {
           "name": "Uptime Kuma",
           "href": "https://github.com/louislam/uptime-kuma",
           "subtitle": "Uptime",
-          "icon": "⏱️",
+          "icon": "di:uptime-kuma",
           "ping": true
         },
         {
           "name": "Prometheus",
           "href": "https://prometheus.io",
           "subtitle": "Metrics",
-          "icon": "📈"
+          "icon": "di:prometheus"
         }
       ]
     },
@@ -102,7 +104,7 @@
           "name": "Portainer",
           "href": "https://portainer.io",
           "subtitle": "Containers",
-          "icon": "🐳"
+          "icon": "di:portainer"
         },
         {
           "name": "Proxmox",

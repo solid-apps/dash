@@ -25,7 +25,8 @@ it before you commit.
 | **Bookmarks** | Compact pill links, grouped — the stuff you open a dozen times a day. |
 | **Info widgets** | A clock, a greeting, a web-search bar (DuckDuckGo / Google / Brave / Bing / Kagi), and live **weather** (via open-meteo — no key). |
 | **Status dots** | Opt-in per service: a lightweight **reachability** ping from your browser. |
-| **Appearance** | A **theme** (auto / dark / light) and an **accent colour**, stored in the board so they travel with it. In edit mode, the 🎨 button opens a palette of gethomepage-style hues; each example layout ships tinted to match its subject. |
+| **Icons** | Each service tile shows a **real logo** — `di:<slug>` for [Dashboard Icons](https://github.com/homarr-labs/dashboard-icons) (full-colour self-hosted service logos, the gethomepage pack), `si:<slug>` for [Simple Icons](https://simpleicons.org), an image URL, an emoji or letter, or blank for the site's own favicon. Packs are opt-in CDN SVGs — the app stays dependency-free unless a board uses one. |
+| **Appearance** | A **theme** (auto / dark / light), an **accent colour**, a **background** (image with blur + a theme-aware dim scrim, or a solid colour), and **group columns** (auto / 1–3 board-wide, 1–4 per group) — all stored in the board so they travel with it via the pod and `?board=`/`?uri=`. Open with the 🎨 button in edit mode. Each example layout ships tinted to match its subject; the Minimal board shows a photo background. |
 
 ## Honest about being browser-only
 

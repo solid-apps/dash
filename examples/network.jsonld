@@ -5,6 +5,8 @@
   "@type": "dash:Board",
   "theme": "auto",
   "accent": "#10b981",
+  "layout": "auto",
+  "background": null,
   "title": "Network",
   "search": "duckduckgo",
   "groups": [
@@ -16,14 +18,14 @@
           "name": "Pi-hole",
           "href": "https://pi-hole.net",
           "subtitle": "Ad-block DNS",
-          "icon": "🛑",
+          "icon": "di:pi-hole",
           "ping": true
         },
         {
           "name": "AdGuard Home",
           "href": "https://adguard.com/adguard-home",
           "subtitle": "DNS filtering",
-          "icon": "🛡️",
+          "icon": "di:adguard-home",
           "ping": true
         }
       ]
@@ -36,21 +38,21 @@
           "name": "OPNsense",
           "href": "https://opnsense.org",
           "subtitle": "Firewall",
-          "icon": "🔥",
+          "icon": "di:opnsense",
           "ping": true
         },
         {
           "name": "pfSense",
           "href": "https://pfsense.org",
           "subtitle": "Firewall",
-          "icon": "🧱",
+          "icon": "di:pfsense",
           "ping": true
         },
         {
           "name": "UniFi",
           "href": "https://ui.com",
           "subtitle": "Controller",
-          "icon": "📡",
+          "icon": "di:unifi",
           "ping": true
         }
       ]
@@ -63,14 +65,14 @@
           "name": "Traefik",
           "href": "https://traefik.io",
           "subtitle": "Reverse proxy",
-          "icon": "🔀",
+          "icon": "di:traefik",
           "ping": true
         },
         {
           "name": "Nginx Proxy Manager",
           "href": "https://nginxproxymanager.com",
           "subtitle": "Proxy UI",
-          "icon": "🧭",
+          "icon": "di:nginx-proxy-manager",
           "ping": true
         }
       ]
@@ -83,7 +85,7 @@
           "name": "Uptime Kuma",
           "href": "https://github.com/louislam/uptime-kuma",
           "subtitle": "Uptime",
-          "icon": "⏱️",
+          "icon": "di:uptime-kuma",
           "ping": true
         },
         {
@@ -97,7 +99,7 @@
           "name": "Grafana",
           "href": "https://grafana.com",
           "subtitle": "Graphs",
-          "icon": "📊",
+          "icon": "di:grafana",
           "ping": true
         },
         {

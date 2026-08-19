@@ -118,7 +118,21 @@ main { max-width: 1100px; margin: 0 auto; padding: 26px 20px 80px; }
 .group-h .ga { display: flex; gap: 4px; }
 .svc-list { display: grid; gap: 6px; }
 .group.cols-2 .svc-list { grid-template-columns: 1fr 1fr; }
+.group.cols-3 .svc-list { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.group.cols-4 .svc-list { grid-template-columns: repeat(4, minmax(0,1fr)); }
+/* denser columns → compact tiles (icon + name), gethomepage-style */
+.group.cols-3 .svc, .group.cols-4 .svc { padding: 8px; gap: 8px; }
+.group.cols-3 .svc-ico, .group.cols-4 .svc-ico { width: 30px; height: 30px; }
+.group.cols-3 .svc-sub, .group.cols-4 .svc-sub { display: none; }
+@media (max-width: 640px) { .group.cols-3 .svc-list, .group.cols-4 .svc-list { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 520px) { .group.cols-2 .svc-list { grid-template-columns: 1fr; } }
+
+/* custom background layer (image with blur, or a solid colour) + theme scrim */
+#dash-bg { position: fixed; inset: -16px; z-index: -1; background-size: cover; background-position: center; background-repeat: no-repeat; }
+#dash-bg::after { content: ''; position: absolute; inset: 0; background: var(--bg); opacity: var(--scrim, 0); }
+body.custom-bg { background: var(--bg); }
+/* on a photo the panels want a touch more opacity to stay legible */
+body.custom-bg .group, body.custom-bg .bm { backdrop-filter: blur(6px); }
 
 .svc {
   display: flex; align-items: center; gap: 11px;
@@ -135,6 +149,9 @@ main { max-width: 1100px; margin: 0 auto; padding: 26px 20px 80px; }
   box-shadow: inset 0 1px 0 rgba(255,255,255,.25);
 }
 .svc-ico img { width: 22px; height: 22px; object-fit: contain; display: block; }
+/* logo chip — real service logos (packs / URLs / favicons) read best on white */
+.svc-ico.logo { background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.15), inset 0 0 0 1px rgba(0,0,0,.05); }
+.svc-ico.logo img { width: 24px; height: 24px; }
 .svc-body { min-width: 0; flex: 1; }
 .svc-name { font-size: 13.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .svc-sub { font-size: 11.5px; color: var(--faint); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

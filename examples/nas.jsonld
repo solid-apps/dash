@@ -5,6 +5,8 @@
   "@type": "dash:Board",
   "theme": "auto",
   "accent": "#0ea5e9",
+  "layout": "auto",
+  "background": null,
   "title": "NAS",
   "search": "duckduckgo",
   "groups": [
@@ -16,19 +18,19 @@
           "name": "Nextcloud",
           "href": "https://nextcloud.com",
           "subtitle": "Cloud storage",
-          "icon": "☁️"
+          "icon": "di:nextcloud"
         },
         {
           "name": "Synology",
           "href": "https://synology.com",
           "subtitle": "DSM",
-          "icon": "🗄️"
+          "icon": "di:synology"
         },
         {
           "name": "TrueNAS",
           "href": "https://truenas.com",
           "subtitle": "ZFS storage",
-          "icon": "🐡"
+          "icon": "di:truenas"
         }
       ]
     },
@@ -40,13 +42,13 @@
           "name": "Immich",
           "href": "https://immich.app",
           "subtitle": "Photo backup",
-          "icon": "📷"
+          "icon": "di:immich"
         },
         {
           "name": "PhotoPrism",
           "href": "https://photoprism.app",
           "subtitle": "Photo library",
-          "icon": "🖼️"
+          "icon": "di:photoprism"
         }
       ]
     },
@@ -58,19 +60,19 @@
           "name": "Syncthing",
           "href": "https://syncthing.net",
           "subtitle": "File sync",
-          "icon": "🔄"
+          "icon": "di:syncthing"
         },
         {
           "name": "Duplicati",
           "href": "https://duplicati.com",
           "subtitle": "Backups",
-          "icon": "🗃️"
+          "icon": "di:duplicati"
         },
         {
           "name": "Kopia",
           "href": "https://kopia.io",
           "subtitle": "Snapshots",
-          "icon": "📸"
+          "icon": "di:kopia"
         },
         {
           "name": "Restic",
@@ -88,13 +90,13 @@
           "name": "Paperless-ngx",
           "href": "https://docs.paperless-ngx.com",
           "subtitle": "Documents",
-          "icon": "📄"
+          "icon": "di:paperless-ngx"
         },
         {
           "name": "Stirling PDF",
           "href": "https://stirlingpdf.com",
           "subtitle": "PDF tools",
-          "icon": "📑"
+          "icon": "di:stirling-pdf"
         }
       ]
     }

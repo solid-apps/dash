@@ -5,6 +5,8 @@
   "@type": "dash:Board",
   "theme": "auto",
   "accent": "#14b8a6",
+  "layout": "auto",
+  "background": null,
   "title": "Productivity",
   "search": "duckduckgo",
   "groups": [
@@ -16,13 +18,13 @@
           "name": "Nextcloud",
           "href": "https://nextcloud.com",
           "subtitle": "Files & office",
-          "icon": "☁️"
+          "icon": "di:nextcloud"
         },
         {
           "name": "Immich",
           "href": "https://immich.app",
           "subtitle": "Photos",
-          "icon": "📷"
+          "icon": "di:immich"
         }
       ]
     },
@@ -34,19 +36,19 @@
           "name": "Vikunja",
           "href": "https://vikunja.io",
           "subtitle": "To-do & lists",
-          "icon": "✅"
+          "icon": "di:vikunja"
         },
         {
           "name": "Planka",
           "href": "https://planka.app",
           "subtitle": "Kanban",
-          "icon": "📋"
+          "icon": "di:planka"
         },
         {
           "name": "Focalboard",
           "href": "https://focalboard.com",
           "subtitle": "Project boards",
-          "icon": "🗂️"
+          "icon": "di:focalboard"
         }
       ]
     },
@@ -58,19 +60,19 @@
           "name": "Outline",
           "href": "https://getoutline.com",
           "subtitle": "Wiki",
-          "icon": "📝"
+          "icon": "di:outline"
         },
         {
           "name": "Trilium",
           "href": "https://github.com/zadam/trilium",
           "subtitle": "Notes",
-          "icon": "🌳"
+          "icon": "di:trilium"
         },
         {
           "name": "Paperless-ngx",
           "href": "https://docs.paperless-ngx.com",
           "subtitle": "Documents",
-          "icon": "📄"
+          "icon": "di:paperless-ngx"
         }
       ]
     },
@@ -82,25 +84,25 @@
           "name": "Vaultwarden",
           "href": "https://github.com/dani-garcia/vaultwarden",
           "subtitle": "Passwords",
-          "icon": "🔑"
+          "icon": "di:vaultwarden"
         },
         {
           "name": "FreshRSS",
           "href": "https://freshrss.org",
           "subtitle": "RSS reader",
-          "icon": "📰"
+          "icon": "di:freshrss"
         },
         {
           "name": "Wallabag",
           "href": "https://wallabag.org",
           "subtitle": "Read later",
-          "icon": "🔖"
+          "icon": "di:wallabag"
         },
         {
           "name": "Mealie",
           "href": "https://mealie.io",
           "subtitle": "Recipes",
-          "icon": "🍲"
+          "icon": "di:mealie"
         }
       ]
     }

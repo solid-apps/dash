@@ -5,6 +5,8 @@
   "@type": "dash:Board",
   "theme": "auto",
   "accent": "#ec4899",
+  "layout": "auto",
+  "background": null,
   "title": "Home",
   "search": "duckduckgo",
   "groups": [
@@ -16,19 +18,19 @@
           "name": "Jellyfin",
           "href": "https://jellyfin.org",
           "subtitle": "Movies & TV",
-          "icon": "🎬"
+          "icon": "di:jellyfin"
         },
         {
           "name": "Audiobookshelf",
           "href": "https://audiobookshelf.org",
           "subtitle": "Audiobooks",
-          "icon": "🎧"
+          "icon": "di:audiobookshelf"
         },
         {
           "name": "Kavita",
           "href": "https://kavitareader.com",
           "subtitle": "Comics & books",
-          "icon": "📖"
+          "icon": "di:kavita"
         }
       ]
     },
@@ -40,7 +42,7 @@
           "name": "Immich",
           "href": "https://immich.app",
           "subtitle": "Family photos",
-          "icon": "📷"
+          "icon": "di:immich"
         }
       ]
     },
@@ -52,7 +54,7 @@
           "name": "Mealie",
           "href": "https://mealie.io",
           "subtitle": "Recipes",
-          "icon": "🍲"
+          "icon": "di:mealie"
         },
         {
           "name": "Tandoor",
@@ -64,13 +66,13 @@
           "name": "Grocy",
           "href": "https://grocy.info",
           "subtitle": "Groceries",
-          "icon": "🛒"
+          "icon": "di:grocy"
         },
         {
           "name": "Nextcloud",
           "href": "https://nextcloud.com",
           "subtitle": "Calendar & files",
-          "icon": "☁️"
+          "icon": "di:nextcloud"
         }
       ]
     },
@@ -82,13 +84,13 @@
           "name": "Home Assistant",
           "href": "https://home-assistant.io",
           "subtitle": "Smart home",
-          "icon": "🏠"
+          "icon": "di:home-assistant"
         },
         {
           "name": "Vaultwarden",
           "href": "https://github.com/dani-garcia/vaultwarden",
           "subtitle": "Family passwords",
-          "icon": "🔑"
+          "icon": "di:vaultwarden"
         }
       ]
     }

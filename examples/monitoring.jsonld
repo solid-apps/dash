@@ -5,6 +5,8 @@
   "@type": "dash:Board",
   "theme": "auto",
   "accent": "#f59e0b",
+  "layout": "auto",
+  "background": null,
   "title": "Monitoring",
   "search": "duckduckgo",
   "groups": [
@@ -16,19 +18,19 @@
           "name": "Grafana",
           "href": "https://grafana.com",
           "subtitle": "Dashboards",
-          "icon": "📊"
+          "icon": "di:grafana"
         },
         {
           "name": "Prometheus",
           "href": "https://prometheus.io",
           "subtitle": "TSDB",
-          "icon": "📈"
+          "icon": "di:prometheus"
         },
         {
           "name": "InfluxDB",
           "href": "https://influxdata.com",
           "subtitle": "Time series",
-          "icon": "🗄️"
+          "icon": "di:influxdb"
         }
       ]
     },
@@ -40,21 +42,21 @@
           "name": "Uptime Kuma",
           "href": "https://github.com/louislam/uptime-kuma",
           "subtitle": "Monitors",
-          "icon": "⏱️",
+          "icon": "di:uptime-kuma",
           "ping": true
         },
         {
           "name": "Gatus",
           "href": "https://gatus.io",
           "subtitle": "Health dashboard",
-          "icon": "🩺",
+          "icon": "di:gatus",
           "ping": true
         },
         {
           "name": "Healthchecks",
           "href": "https://healthchecks.io",
           "subtitle": "Cron monitoring",
-          "icon": "✅",
+          "icon": "di:healthchecks",
           "ping": true
         }
       ]
@@ -67,13 +69,13 @@
           "name": "Loki",
           "href": "https://grafana.com/oss/loki",
           "subtitle": "Log aggregation",
-          "icon": "🪵"
+          "icon": "di:loki"
         },
         {
           "name": "Dozzle",
           "href": "https://dozzle.dev",
           "subtitle": "Container logs",
-          "icon": "📜"
+          "icon": "di:dozzle"
         }
       ]
     },
@@ -91,7 +93,7 @@
           "name": "ntfy",
           "href": "https://ntfy.sh",
           "subtitle": "Push notify",
-          "icon": "🔔"
+          "icon": "di:ntfy"
         }
       ]
     }

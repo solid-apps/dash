@@ -5,6 +5,8 @@
   "@type": "dash:Board",
   "theme": "auto",
   "accent": "#8b5cf6",
+  "layout": "auto",
+  "background": null,
   "title": "Dev",
   "search": "duckduckgo",
   "groups": [
@@ -16,13 +18,13 @@
           "name": "Gitea",
           "href": "https://gitea.io",
           "subtitle": "Git hosting",
-          "icon": "🍵"
+          "icon": "di:gitea"
         },
         {
           "name": "Forgejo",
           "href": "https://forgejo.org",
           "subtitle": "Git forge",
-          "icon": "🔨"
+          "icon": "di:forgejo"
         },
         {
           "name": "code-server",
@@ -40,13 +42,13 @@
           "name": "Jenkins",
           "href": "https://jenkins.io",
           "subtitle": "Automation",
-          "icon": "🤵"
+          "icon": "di:jenkins"
         },
         {
           "name": "Woodpecker",
           "href": "https://woodpecker-ci.org",
           "subtitle": "CI",
-          "icon": "🪵"
+          "icon": "di:woodpecker-ci"
         },
         {
           "name": "Drone",
@@ -64,25 +66,25 @@
           "name": "Portainer",
           "href": "https://portainer.io",
           "subtitle": "Docker UI",
-          "icon": "🐳"
+          "icon": "di:portainer"
         },
         {
           "name": "Harbor",
           "href": "https://goharbor.io",
           "subtitle": "Registry",
-          "icon": "⚓"
+          "icon": "di:harbor"
         },
         {
           "name": "Watchtower",
           "href": "https://containrrr.dev/watchtower",
           "subtitle": "Auto-update",
-          "icon": "🗼"
+          "icon": "di:watchtower"
         },
         {
           "name": "Dozzle",
           "href": "https://dozzle.dev",
           "subtitle": "Logs",
-          "icon": "📜"
+          "icon": "di:dozzle"
         }
       ]
     },
@@ -94,13 +96,13 @@
           "name": "BookStack",
           "href": "https://bookstackapp.com",
           "subtitle": "Wiki",
-          "icon": "📚"
+          "icon": "di:bookstack"
         },
         {
           "name": "Outline",
           "href": "https://getoutline.com",
           "subtitle": "Knowledge base",
-          "icon": "📝"
+          "icon": "di:outline"
         },
         {
           "name": "IT-Tools",

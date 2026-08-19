@@ -5,6 +5,8 @@
   "@type": "dash:Board",
   "theme": "auto",
   "accent": "#f43f5e",
+  "layout": "auto",
+  "background": null,
   "title": "Media",
   "search": "duckduckgo",
   "groups": [
@@ -16,19 +18,19 @@
           "name": "Plex",
           "href": "https://plex.tv",
           "subtitle": "Media server",
-          "icon": "🎞️"
+          "icon": "di:plex"
         },
         {
           "name": "Jellyfin",
           "href": "https://jellyfin.org",
           "subtitle": "Open-source media",
-          "icon": "🎬"
+          "icon": "di:jellyfin"
         },
         {
           "name": "Emby",
           "href": "https://emby.media",
           "subtitle": "Media server",
-          "icon": "📽️"
+          "icon": "di:emby"
         }
       ]
     },
@@ -40,55 +42,55 @@
           "name": "Overseerr",
           "href": "https://overseerr.dev",
           "subtitle": "Request manager",
-          "icon": "🙋"
+          "icon": "di:overseerr"
         },
         {
           "name": "Jellyseerr",
           "href": "https://github.com/Fallenbagel/jellyseerr",
           "subtitle": "Requests for Jellyfin",
-          "icon": "🎟️"
+          "icon": "di:jellyseerr"
         }
       ]
     },
     {
       "name": "Automation",
-      "columns": 2,
+      "columns": 3,
       "services": [
         {
           "name": "Sonarr",
           "href": "https://sonarr.tv",
           "subtitle": "TV",
-          "icon": "📺"
+          "icon": "di:sonarr"
         },
         {
           "name": "Radarr",
           "href": "https://radarr.video",
           "subtitle": "Movies",
-          "icon": "🎥"
+          "icon": "di:radarr"
         },
         {
           "name": "Prowlarr",
           "href": "https://prowlarr.com",
           "subtitle": "Indexers",
-          "icon": "🔎"
+          "icon": "di:prowlarr"
         },
         {
           "name": "Bazarr",
           "href": "https://www.bazarr.media",
           "subtitle": "Subtitles",
-          "icon": "💬"
+          "icon": "di:bazarr"
         },
         {
           "name": "Lidarr",
           "href": "https://lidarr.audio",
           "subtitle": "Music",
-          "icon": "🎵"
+          "icon": "di:lidarr"
         },
         {
           "name": "Readarr",
           "href": "https://readarr.com",
           "subtitle": "Books",
-          "icon": "📚"
+          "icon": "di:readarr"
         }
       ]
     },
@@ -100,14 +102,14 @@
           "name": "qBittorrent",
           "href": "https://qbittorrent.org",
           "subtitle": "Torrents",
-          "icon": "📥",
+          "icon": "di:qbittorrent",
           "ping": true
         },
         {
           "name": "SABnzbd",
           "href": "https://sabnzbd.org",
           "subtitle": "Usenet",
-          "icon": "📦",
+          "icon": "di:sabnzbd",
           "ping": true
         }
       ]
@@ -120,7 +122,7 @@
           "name": "Tautulli",
           "href": "https://tautulli.com",
           "subtitle": "Plex analytics",
-          "icon": "📊"
+          "icon": "di:tautulli"
         },
         {
           "name": "Requestrr",
