@@ -1,0 +1,115 @@
+{
+  "@context": {
+    "dash": "https://solid-apps.github.io/dash/ns#"
+  },
+  "@type": "dash:Board",
+  "title": "Reference",
+  "search": "duckduckgo",
+  "theme": "auto",
+  "accent": "#6001d2",
+  "layout": "auto",
+  "background": {
+    "preset": "accent"
+  },
+  "groups": [],
+  "bookmarks": [
+    {
+      "name": "Navigation",
+      "links": [
+        {
+          "name": "↑ Portal home",
+          "href": "https://solid-apps.github.io/dash/index.html?uri=examples/yahoo.jsonld"
+        }
+      ]
+    },
+    {
+      "name": "Encyclopedias",
+      "links": [
+        {
+          "name": "Wikipedia",
+          "href": "https://en.wikipedia.org"
+        },
+        {
+          "name": "Britannica",
+          "href": "https://www.britannica.com"
+        },
+        {
+          "name": "Stanford Encyclopedia",
+          "href": "https://plato.stanford.edu"
+        }
+      ]
+    },
+    {
+      "name": "Dictionaries",
+      "links": [
+        {
+          "name": "Merriam-Webster",
+          "href": "https://www.merriam-webster.com"
+        },
+        {
+          "name": "Wiktionary",
+          "href": "https://www.wiktionary.org"
+        },
+        {
+          "name": "Thesaurus",
+          "href": "https://www.thesaurus.com"
+        },
+        {
+          "name": "Etymonline",
+          "href": "https://www.etymonline.com"
+        }
+      ]
+    },
+    {
+      "name": "Maps & Geography",
+      "links": [
+        {
+          "name": "OpenStreetMap",
+          "href": "https://www.openstreetmap.org"
+        },
+        {
+          "name": "Google Maps",
+          "href": "https://www.google.com/maps"
+        },
+        {
+          "name": "World Factbook",
+          "href": "https://www.cia.gov/the-world-factbook"
+        }
+      ]
+    },
+    {
+      "name": "Libraries",
+      "links": [
+        {
+          "name": "Internet Archive",
+          "href": "https://archive.org"
+        },
+        {
+          "name": "Library of Congress",
+          "href": "https://www.loc.gov"
+        },
+        {
+          "name": "Google Scholar",
+          "href": "https://scholar.google.com"
+        },
+        {
+          "name": "WorldCat",
+          "href": "https://www.worldcat.org"
+        }
+      ]
+    },
+    {
+      "name": "Quotations & Facts",
+      "links": [
+        {
+          "name": "Wikiquote",
+          "href": "https://www.wikiquote.org"
+        },
+        {
+          "name": "Our World in Data",
+          "href": "https://ourworldindata.org"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+{
+  "@context": {
+    "dash": "https://solid-apps.github.io/dash/ns#"
+  },
+  "@type": "dash:Board",
+  "title": "Computers & Internet",
+  "search": "duckduckgo",
+  "theme": "auto",
+  "accent": "#6001d2",
+  "layout": "auto",
+  "background": {
+    "preset": "accent"
+  },
+  "groups": [],
+  "bookmarks": [
+    {
+      "name": "Navigation",
+      "links": [
+        {
+          "name": "↑ Portal home",
+          "href": "https://solid-apps.github.io/dash/index.html?uri=examples/yahoo.jsonld"
+        }
+      ]
+    },
+    {
+      "name": "Internet & Web",
+      "links": [
+        {
+          "name": "MDN",
+          "href": "https://developer.mozilla.org"
+        },
+        {
+          "name": "W3C",
+          "href": "https://www.w3.org"
+        },
+        {
+          "name": "IETF",
+          "href": "https://www.ietf.org"
+        },
+        {
+          "name": "Internet Archive",
+          "href": "https://archive.org"
+        }
+      ]
+    },
+    {
+      "name": "Software",
+      "links": [
+        {
+          "name": "GitHub",
+          "href": "https://github.com"
+        },
+        {
+          "name": "GitLab",
+          "href": "https://gitlab.com"
+        },
+        {
+          "name": "SourceForge",
+          "href": "https://sourceforge.net"
+        },
+        {
+          "name": "F-Droid",
+          "href": "https://f-droid.org"
+        }
+      ]
+    },
+    {
+      "name": "Programming",
+      "links": [
+        {
+          "name": "All programming →",
+          "href": "https://solid-apps.github.io/dash/index.html?uri=examples/yahoo/computers-programming.jsonld"
+        },
+        {
+          "name": "Stack Overflow",
+          "href": "https://stackoverflow.com"
+        },
+        {
+          "name": "Python",
+          "href": "https://www.python.org"
+        },
+        {
+          "name": "Rust",
+          "href": "https://www.rust-lang.org"
+        }
+      ]
+    },
+    {
+      "name": "Hardware",
+      "links": [
+        {
+          "name": "Tom's Hardware",
+          "href": "https://www.tomshardware.com"
+        },
+        {
+          "name": "iFixit",
+          "href": "https://www.ifixit.com"
+        },
+        {
+          "name": "Raspberry Pi",
+          "href": "https://www.raspberrypi.com"
+        },
+        {
+          "name": "Arduino",
+          "href": "https://www.arduino.cc"
+        }
+      ]
+    },
+    {
+      "name": "Security",
+      "links": [
+        {
+          "name": "OWASP",
+          "href": "https://owasp.org"
+        },
+        {
+          "name": "Have I Been Pwned",
+          "href": "https://haveibeenpwned.com"
+        },
+        {
+          "name": "NIST",
+          "href": "https://www.nist.gov"
+        },
+        {
+          "name": "Krebs on Security",
+          "href": "https://krebsonsecurity.com"
+        }
+      ]
+    },
+    {
+      "name": "Games",
+      "links": [
+        {
+          "name": "Steam",
+          "href": "https://store.steampowered.com"
+        },
+        {
+          "name": "itch.io",
+          "href": "https://itch.io"
+        },
+        {
+          "name": "GOG",
+          "href": "https://www.gog.com"
+        }
+      ]
+    }
+  ]
+}

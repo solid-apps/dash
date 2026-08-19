@@ -1,0 +1,101 @@
+{
+  "@context": {
+    "dash": "https://solid-apps.github.io/dash/ns#"
+  },
+  "@type": "dash:Board",
+  "title": "Programming Languages",
+  "search": "duckduckgo",
+  "theme": "auto",
+  "accent": "#6001d2",
+  "layout": "auto",
+  "background": {
+    "preset": "accent"
+  },
+  "groups": [],
+  "bookmarks": [
+    {
+      "name": "Navigation",
+      "links": [
+        {
+          "name": "↑ Computers & Internet",
+          "href": "https://solid-apps.github.io/dash/index.html?uri=examples/yahoo/computers.jsonld"
+        },
+        {
+          "name": "↑ Portal home",
+          "href": "https://solid-apps.github.io/dash/index.html?uri=examples/yahoo.jsonld"
+        }
+      ]
+    },
+    {
+      "name": "Languages",
+      "links": [
+        {
+          "name": "Python",
+          "href": "https://www.python.org"
+        },
+        {
+          "name": "JavaScript",
+          "href": "https://developer.mozilla.org/docs/Web/JavaScript"
+        },
+        {
+          "name": "Rust",
+          "href": "https://www.rust-lang.org"
+        },
+        {
+          "name": "Go",
+          "href": "https://go.dev"
+        },
+        {
+          "name": "TypeScript",
+          "href": "https://www.typescriptlang.org"
+        },
+        {
+          "name": "C++",
+          "href": "https://isocpp.org"
+        }
+      ]
+    },
+    {
+      "name": "Communities",
+      "links": [
+        {
+          "name": "Stack Overflow",
+          "href": "https://stackoverflow.com"
+        },
+        {
+          "name": "GitHub",
+          "href": "https://github.com"
+        },
+        {
+          "name": "Lobsters",
+          "href": "https://lobste.rs"
+        },
+        {
+          "name": "Hacker News",
+          "href": "https://news.ycombinator.com"
+        }
+      ]
+    },
+    {
+      "name": "Docs & Learning",
+      "links": [
+        {
+          "name": "MDN",
+          "href": "https://developer.mozilla.org"
+        },
+        {
+          "name": "DevDocs",
+          "href": "https://devdocs.io"
+        },
+        {
+          "name": "Read the Docs",
+          "href": "https://readthedocs.org"
+        },
+        {
+          "name": "freeCodeCamp",
+          "href": "https://www.freecodecamp.org"
+        }
+      ]
+    }
+  ]
+}

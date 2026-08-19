@@ -1,0 +1,119 @@
+{
+  "@context": {
+    "dash": "https://solid-apps.github.io/dash/ns#"
+  },
+  "@type": "dash:Board",
+  "title": "Entertainment",
+  "search": "duckduckgo",
+  "theme": "auto",
+  "accent": "#6001d2",
+  "layout": "auto",
+  "background": {
+    "preset": "accent"
+  },
+  "groups": [],
+  "bookmarks": [
+    {
+      "name": "Navigation",
+      "links": [
+        {
+          "name": "↑ Portal home",
+          "href": "https://solid-apps.github.io/dash/index.html?uri=examples/yahoo.jsonld"
+        }
+      ]
+    },
+    {
+      "name": "Movies & TV",
+      "links": [
+        {
+          "name": "IMDb",
+          "href": "https://www.imdb.com"
+        },
+        {
+          "name": "Rotten Tomatoes",
+          "href": "https://www.rottentomatoes.com"
+        },
+        {
+          "name": "Letterboxd",
+          "href": "https://letterboxd.com"
+        },
+        {
+          "name": "JustWatch",
+          "href": "https://www.justwatch.com"
+        }
+      ]
+    },
+    {
+      "name": "Music",
+      "links": [
+        {
+          "name": "Spotify",
+          "href": "https://open.spotify.com"
+        },
+        {
+          "name": "Bandcamp",
+          "href": "https://bandcamp.com"
+        },
+        {
+          "name": "SoundCloud",
+          "href": "https://soundcloud.com"
+        },
+        {
+          "name": "Last.fm",
+          "href": "https://www.last.fm"
+        }
+      ]
+    },
+    {
+      "name": "Games",
+      "links": [
+        {
+          "name": "IGN",
+          "href": "https://www.ign.com"
+        },
+        {
+          "name": "Steam",
+          "href": "https://store.steampowered.com"
+        },
+        {
+          "name": "Twitch",
+          "href": "https://www.twitch.tv"
+        }
+      ]
+    },
+    {
+      "name": "Humor & Culture",
+      "links": [
+        {
+          "name": "McSweeney’s",
+          "href": "https://www.mcsweeneys.net"
+        },
+        {
+          "name": "xkcd",
+          "href": "https://xkcd.com"
+        },
+        {
+          "name": "Reddit",
+          "href": "https://www.reddit.com"
+        }
+      ]
+    },
+    {
+      "name": "Books",
+      "links": [
+        {
+          "name": "Goodreads",
+          "href": "https://www.goodreads.com"
+        },
+        {
+          "name": "Project Gutenberg",
+          "href": "https://www.gutenberg.org"
+        },
+        {
+          "name": "Open Library",
+          "href": "https://openlibrary.org"
+        }
+      ]
+    }
+  ]
+}

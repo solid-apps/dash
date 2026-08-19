@@ -1,0 +1,366 @@
+{
+  "@context": {
+    "dash": "https://solid-apps.github.io/dash/ns#"
+  },
+  "@type": "dash:Board",
+  "theme": "auto",
+  "accent": "#6001d2",
+  "layout": "auto",
+  "background": {
+    "preset": "accent"
+  },
+  "title": "The Web Directory",
+  "search": "duckduckgo",
+  "groups": [
+    {
+      "name": "Quick links",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Mail",
+          "href": "https://mail.yahoo.com",
+          "subtitle": "Inbox",
+          "icon": "✉️"
+        },
+        {
+          "name": "News",
+          "href": "https://news.yahoo.com",
+          "subtitle": "Headlines",
+          "icon": "📰"
+        },
+        {
+          "name": "Finance",
+          "href": "https://finance.yahoo.com",
+          "subtitle": "Markets",
+          "icon": "📈"
+        },
+        {
+          "name": "Sports",
+          "href": "https://sports.yahoo.com",
+          "subtitle": "Scores",
+          "icon": "🏈"
+        },
+        {
+          "name": "Weather",
+          "href": "https://www.weather.com",
+          "subtitle": "Forecast",
+          "icon": "⛅"
+        },
+        {
+          "name": "Shopping",
+          "href": "https://www.ebay.com",
+          "subtitle": "Auctions & deals",
+          "icon": "🛍️"
+        },
+        {
+          "name": "Flickr",
+          "href": "https://www.flickr.com",
+          "subtitle": "Photos",
+          "icon": "📷"
+        },
+        {
+          "name": "Search",
+          "href": "https://search.yahoo.com",
+          "subtitle": "The whole web",
+          "icon": "🔍"
+        }
+      ]
+    }
+  ],
+  "bookmarks": [
+    {
+      "name": "Arts & Humanities",
+      "links": [
+        {
+          "name": "Literature",
+          "href": "https://www.gutenberg.org"
+        },
+        {
+          "name": "Museums",
+          "href": "https://artsandculture.google.com"
+        },
+        {
+          "name": "Photography",
+          "href": "https://unsplash.com"
+        },
+        {
+          "name": "History",
+          "href": "https://www.worldhistory.org"
+        }
+      ]
+    },
+    {
+      "name": "Business & Economy",
+      "links": [
+        {
+          "name": "Finance",
+          "href": "https://finance.yahoo.com"
+        },
+        {
+          "name": "Jobs",
+          "href": "https://www.indeed.com"
+        },
+        {
+          "name": "Shopping",
+          "href": "https://www.amazon.com"
+        },
+        {
+          "name": "Startups",
+          "href": "https://www.crunchbase.com"
+        }
+      ]
+    },
+    {
+      "name": "Computers & Internet",
+      "links": [
+        {
+          "name": "Full directory →",
+          "href": "https://solid-apps.github.io/dash/index.html?uri=examples/yahoo/computers.jsonld"
+        },
+        {
+          "name": "Software",
+          "href": "https://github.com"
+        },
+        {
+          "name": "Web & Dev",
+          "href": "https://developer.mozilla.org"
+        },
+        {
+          "name": "Security",
+          "href": "https://owasp.org"
+        }
+      ]
+    },
+    {
+      "name": "Education",
+      "links": [
+        {
+          "name": "Universities",
+          "href": "https://www.mit.edu"
+        },
+        {
+          "name": "Courses",
+          "href": "https://www.coursera.org"
+        },
+        {
+          "name": "Encyclopedia",
+          "href": "https://www.wikipedia.org"
+        },
+        {
+          "name": "K-12",
+          "href": "https://www.khanacademy.org"
+        }
+      ]
+    },
+    {
+      "name": "Entertainment",
+      "links": [
+        {
+          "name": "Full directory →",
+          "href": "https://solid-apps.github.io/dash/index.html?uri=examples/yahoo/entertainment.jsonld"
+        },
+        {
+          "name": "Movies",
+          "href": "https://www.imdb.com"
+        },
+        {
+          "name": "Music",
+          "href": "https://open.spotify.com"
+        },
+        {
+          "name": "Humor",
+          "href": "https://www.mcsweeneys.net"
+        }
+      ]
+    },
+    {
+      "name": "Government",
+      "links": [
+        {
+          "name": "Law",
+          "href": "https://www.law.cornell.edu"
+        },
+        {
+          "name": "Taxes",
+          "href": "https://www.irs.gov"
+        },
+        {
+          "name": "Open Data",
+          "href": "https://www.data.gov"
+        },
+        {
+          "name": "Congress",
+          "href": "https://www.congress.gov"
+        }
+      ]
+    },
+    {
+      "name": "Health",
+      "links": [
+        {
+          "name": "Medicine",
+          "href": "https://medlineplus.gov"
+        },
+        {
+          "name": "Reference",
+          "href": "https://www.mayoclinic.org"
+        },
+        {
+          "name": "Fitness",
+          "href": "https://www.nhs.uk/live-well"
+        },
+        {
+          "name": "Global",
+          "href": "https://www.who.int"
+        }
+      ]
+    },
+    {
+      "name": "News & Media",
+      "links": [
+        {
+          "name": "Newspapers",
+          "href": "https://www.nytimes.com"
+        },
+        {
+          "name": "World",
+          "href": "https://www.bbc.com/news"
+        },
+        {
+          "name": "Tech",
+          "href": "https://arstechnica.com"
+        },
+        {
+          "name": "Aggregator",
+          "href": "https://news.google.com"
+        }
+      ]
+    },
+    {
+      "name": "Recreation & Sports",
+      "links": [
+        {
+          "name": "Sports",
+          "href": "https://www.espn.com"
+        },
+        {
+          "name": "Travel",
+          "href": "https://www.wikivoyage.org"
+        },
+        {
+          "name": "Outdoors",
+          "href": "https://www.alltrails.com"
+        },
+        {
+          "name": "Games",
+          "href": "https://www.chess.com"
+        }
+      ]
+    },
+    {
+      "name": "Reference",
+      "links": [
+        {
+          "name": "Full directory →",
+          "href": "https://solid-apps.github.io/dash/index.html?uri=examples/yahoo/reference.jsonld"
+        },
+        {
+          "name": "Dictionary",
+          "href": "https://www.merriam-webster.com"
+        },
+        {
+          "name": "Maps",
+          "href": "https://www.openstreetmap.org"
+        },
+        {
+          "name": "Encyclopedia",
+          "href": "https://en.wikipedia.org"
+        }
+      ]
+    },
+    {
+      "name": "Regional",
+      "links": [
+        {
+          "name": "World Factbook",
+          "href": "https://www.cia.gov/the-world-factbook"
+        },
+        {
+          "name": "Maps",
+          "href": "https://www.google.com/maps"
+        },
+        {
+          "name": "Weather",
+          "href": "https://www.weather.com"
+        },
+        {
+          "name": "Time",
+          "href": "https://time.is"
+        }
+      ]
+    },
+    {
+      "name": "Science",
+      "links": [
+        {
+          "name": "Space",
+          "href": "https://www.nasa.gov"
+        },
+        {
+          "name": "Research",
+          "href": "https://arxiv.org"
+        },
+        {
+          "name": "Journals",
+          "href": "https://www.nature.com"
+        },
+        {
+          "name": "Nature",
+          "href": "https://www.nationalgeographic.com"
+        }
+      ]
+    },
+    {
+      "name": "Social Science",
+      "links": [
+        {
+          "name": "Languages",
+          "href": "https://www.duolingo.com"
+        },
+        {
+          "name": "Psychology",
+          "href": "https://www.apa.org"
+        },
+        {
+          "name": "Economics",
+          "href": "https://www.imf.org"
+        },
+        {
+          "name": "Data",
+          "href": "https://ourworldindata.org"
+        }
+      ]
+    },
+    {
+      "name": "Society & Culture",
+      "links": [
+        {
+          "name": "Environment",
+          "href": "https://www.unep.org"
+        },
+        {
+          "name": "Genealogy",
+          "href": "https://www.familysearch.org"
+        },
+        {
+          "name": "Food",
+          "href": "https://www.allrecipes.com"
+        },
+        {
+          "name": "Religion",
+          "href": "https://www.bbc.co.uk/religion"
+        }
+      ]
+    }
+  ]
+}

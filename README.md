@@ -85,7 +85,10 @@ dash reads its board in order of authority:
    button copies exactly this. Accepts base64url-encoded JSON or raw JSON;
 3. **`?uri=<url>`** — fetch and render *any* published `dash:Board` resource
    (read-only), so dash doubles as a viewer for boards hosted anywhere.
-   `?src=<url>` is accepted as an alias;
+   `?src=<url>` is accepted as an alias. Because a link *inside* a board can
+   itself point at `?uri=` of another board, directories **nest** — see the
+   **Classic Web Portal** example, a Yahoo!-style directory whose categories
+   drill down into sub-boards (and sub-sub-boards), each its own `dash:Board`;
 4. the **inline data island**;
 5. a built-in sample.
 
