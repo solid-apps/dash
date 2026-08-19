@@ -1,0 +1,135 @@
+{
+  "@context": {
+    "dash": "https://solid-apps.github.io/dash/ns#"
+  },
+  "@type": "dash:Board",
+  "title": "Dev",
+  "search": "duckduckgo",
+  "groups": [
+    {
+      "name": "Code",
+      "columns": 1,
+      "services": [
+        {
+          "name": "Gitea",
+          "href": "https://gitea.io",
+          "subtitle": "Git hosting",
+          "icon": "🍵"
+        },
+        {
+          "name": "Forgejo",
+          "href": "https://forgejo.org",
+          "subtitle": "Git forge",
+          "icon": "🔨"
+        },
+        {
+          "name": "code-server",
+          "href": "https://github.com/coder/code-server",
+          "subtitle": "VS Code",
+          "icon": "💻"
+        }
+      ]
+    },
+    {
+      "name": "CI / CD",
+      "columns": 1,
+      "services": [
+        {
+          "name": "Jenkins",
+          "href": "https://jenkins.io",
+          "subtitle": "Automation",
+          "icon": "🤵"
+        },
+        {
+          "name": "Woodpecker",
+          "href": "https://woodpecker-ci.org",
+          "subtitle": "CI",
+          "icon": "🪵"
+        },
+        {
+          "name": "Drone",
+          "href": "https://drone.io",
+          "subtitle": "Pipelines",
+          "icon": "✈️"
+        }
+      ]
+    },
+    {
+      "name": "Containers",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Portainer",
+          "href": "https://portainer.io",
+          "subtitle": "Docker UI",
+          "icon": "🐳"
+        },
+        {
+          "name": "Harbor",
+          "href": "https://goharbor.io",
+          "subtitle": "Registry",
+          "icon": "⚓"
+        },
+        {
+          "name": "Watchtower",
+          "href": "https://containrrr.dev/watchtower",
+          "subtitle": "Auto-update",
+          "icon": "🗼"
+        },
+        {
+          "name": "Dozzle",
+          "href": "https://dozzle.dev",
+          "subtitle": "Logs",
+          "icon": "📜"
+        }
+      ]
+    },
+    {
+      "name": "Docs & Tools",
+      "columns": 2,
+      "services": [
+        {
+          "name": "BookStack",
+          "href": "https://bookstackapp.com",
+          "subtitle": "Wiki",
+          "icon": "📚"
+        },
+        {
+          "name": "Outline",
+          "href": "https://getoutline.com",
+          "subtitle": "Knowledge base",
+          "icon": "📝"
+        },
+        {
+          "name": "IT-Tools",
+          "href": "https://it-tools.tech",
+          "subtitle": "Dev toolbox",
+          "icon": "🧰"
+        }
+      ]
+    }
+  ],
+  "bookmarks": [
+    {
+      "name": "Refs",
+      "links": [
+        {
+          "name": "MDN",
+          "href": "https://developer.mozilla.org"
+        },
+        {
+          "name": "DevDocs",
+          "href": "https://devdocs.io"
+        },
+        {
+          "name": "GitHub",
+          "href": "https://github.com"
+        },
+        {
+          "name": "caniuse",
+          "href": "https://caniuse.com"
+        }
+      ]
+    }
+  ]
+}

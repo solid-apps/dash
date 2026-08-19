@@ -1,0 +1,133 @@
+{
+  "@context": {
+    "dash": "https://solid-apps.github.io/dash/ns#"
+  },
+  "@type": "dash:Board",
+  "title": "Homelab",
+  "search": "duckduckgo",
+  "weather": {
+    "lat": 52.52,
+    "lon": 13.41,
+    "label": "Berlin, DE"
+  },
+  "groups": [
+    {
+      "name": "Media",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Jellyfin",
+          "href": "https://jellyfin.org",
+          "subtitle": "Movies & TV",
+          "icon": "🎬"
+        },
+        {
+          "name": "Plex",
+          "href": "https://plex.tv",
+          "subtitle": "Media server",
+          "icon": "🎞️"
+        },
+        {
+          "name": "Sonarr",
+          "href": "https://sonarr.tv",
+          "subtitle": "TV automation",
+          "icon": "📺"
+        },
+        {
+          "name": "Radarr",
+          "href": "https://radarr.video",
+          "subtitle": "Movie automation",
+          "icon": "🎥"
+        }
+      ]
+    },
+    {
+      "name": "Network",
+      "columns": 1,
+      "services": [
+        {
+          "name": "Pi-hole",
+          "href": "https://pi-hole.net",
+          "subtitle": "DNS ad-block",
+          "icon": "🛑",
+          "ping": true
+        },
+        {
+          "name": "AdGuard Home",
+          "href": "https://adguard.com/adguard-home",
+          "subtitle": "DNS filtering",
+          "icon": "🛡️",
+          "ping": true
+        },
+        {
+          "name": "UniFi",
+          "href": "https://ui.com",
+          "subtitle": "Network controller",
+          "icon": "📡"
+        }
+      ]
+    },
+    {
+      "name": "Monitoring",
+      "columns": 1,
+      "services": [
+        {
+          "name": "Grafana",
+          "href": "https://grafana.com",
+          "subtitle": "Dashboards",
+          "icon": "📊"
+        },
+        {
+          "name": "Uptime Kuma",
+          "href": "https://github.com/louislam/uptime-kuma",
+          "subtitle": "Uptime",
+          "icon": "⏱️",
+          "ping": true
+        },
+        {
+          "name": "Prometheus",
+          "href": "https://prometheus.io",
+          "subtitle": "Metrics",
+          "icon": "📈"
+        }
+      ]
+    },
+    {
+      "name": "Management",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Portainer",
+          "href": "https://portainer.io",
+          "subtitle": "Containers",
+          "icon": "🐳"
+        },
+        {
+          "name": "Proxmox",
+          "href": "https://proxmox.com",
+          "subtitle": "Virtualization",
+          "icon": "🧰"
+        }
+      ]
+    }
+  ],
+  "bookmarks": [
+    {
+      "name": "Docs",
+      "links": [
+        {
+          "name": "gethomepage",
+          "href": "https://gethomepage.dev"
+        },
+        {
+          "name": "r/selfhosted",
+          "href": "https://reddit.com/r/selfhosted"
+        },
+        {
+          "name": "Awesome-Selfhosted",
+          "href": "https://awesome-selfhosted.net"
+        }
+      ]
+    }
+  ]
+}

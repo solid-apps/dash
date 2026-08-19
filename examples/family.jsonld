@@ -1,0 +1,109 @@
+{
+  "@context": {
+    "dash": "https://solid-apps.github.io/dash/ns#"
+  },
+  "@type": "dash:Board",
+  "title": "Home",
+  "search": "duckduckgo",
+  "groups": [
+    {
+      "name": "Watch & Listen",
+      "columns": 1,
+      "services": [
+        {
+          "name": "Jellyfin",
+          "href": "https://jellyfin.org",
+          "subtitle": "Movies & TV",
+          "icon": "🎬"
+        },
+        {
+          "name": "Audiobookshelf",
+          "href": "https://audiobookshelf.org",
+          "subtitle": "Audiobooks",
+          "icon": "🎧"
+        },
+        {
+          "name": "Kavita",
+          "href": "https://kavitareader.com",
+          "subtitle": "Comics & books",
+          "icon": "📖"
+        }
+      ]
+    },
+    {
+      "name": "Photos",
+      "columns": 1,
+      "services": [
+        {
+          "name": "Immich",
+          "href": "https://immich.app",
+          "subtitle": "Family photos",
+          "icon": "📷"
+        }
+      ]
+    },
+    {
+      "name": "Kitchen & Lists",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Mealie",
+          "href": "https://mealie.io",
+          "subtitle": "Recipes",
+          "icon": "🍲"
+        },
+        {
+          "name": "Tandoor",
+          "href": "https://tandoor.dev",
+          "subtitle": "Meal planning",
+          "icon": "👨‍🍳"
+        },
+        {
+          "name": "Grocy",
+          "href": "https://grocy.info",
+          "subtitle": "Groceries",
+          "icon": "🛒"
+        },
+        {
+          "name": "Nextcloud",
+          "href": "https://nextcloud.com",
+          "subtitle": "Calendar & files",
+          "icon": "☁️"
+        }
+      ]
+    },
+    {
+      "name": "Home",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Home Assistant",
+          "href": "https://home-assistant.io",
+          "subtitle": "Smart home",
+          "icon": "🏠"
+        },
+        {
+          "name": "Vaultwarden",
+          "href": "https://github.com/dani-garcia/vaultwarden",
+          "subtitle": "Family passwords",
+          "icon": "🔑"
+        }
+      ]
+    }
+  ],
+  "bookmarks": [
+    {
+      "name": "Household",
+      "links": [
+        {
+          "name": "Weather",
+          "href": "https://weather.com"
+        },
+        {
+          "name": "School",
+          "href": "https://classroom.google.com"
+        }
+      ]
+    }
+  ]
+}

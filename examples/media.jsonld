@@ -1,0 +1,147 @@
+{
+  "@context": {
+    "dash": "https://solid-apps.github.io/dash/ns#"
+  },
+  "@type": "dash:Board",
+  "title": "Media",
+  "search": "duckduckgo",
+  "groups": [
+    {
+      "name": "Players",
+      "columns": 1,
+      "services": [
+        {
+          "name": "Plex",
+          "href": "https://plex.tv",
+          "subtitle": "Media server",
+          "icon": "🎞️"
+        },
+        {
+          "name": "Jellyfin",
+          "href": "https://jellyfin.org",
+          "subtitle": "Open-source media",
+          "icon": "🎬"
+        },
+        {
+          "name": "Emby",
+          "href": "https://emby.media",
+          "subtitle": "Media server",
+          "icon": "📽️"
+        }
+      ]
+    },
+    {
+      "name": "Requests",
+      "columns": 1,
+      "services": [
+        {
+          "name": "Overseerr",
+          "href": "https://overseerr.dev",
+          "subtitle": "Request manager",
+          "icon": "🙋"
+        },
+        {
+          "name": "Jellyseerr",
+          "href": "https://github.com/Fallenbagel/jellyseerr",
+          "subtitle": "Requests for Jellyfin",
+          "icon": "🎟️"
+        }
+      ]
+    },
+    {
+      "name": "Automation",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Sonarr",
+          "href": "https://sonarr.tv",
+          "subtitle": "TV",
+          "icon": "📺"
+        },
+        {
+          "name": "Radarr",
+          "href": "https://radarr.video",
+          "subtitle": "Movies",
+          "icon": "🎥"
+        },
+        {
+          "name": "Prowlarr",
+          "href": "https://prowlarr.com",
+          "subtitle": "Indexers",
+          "icon": "🔎"
+        },
+        {
+          "name": "Bazarr",
+          "href": "https://www.bazarr.media",
+          "subtitle": "Subtitles",
+          "icon": "💬"
+        },
+        {
+          "name": "Lidarr",
+          "href": "https://lidarr.audio",
+          "subtitle": "Music",
+          "icon": "🎵"
+        },
+        {
+          "name": "Readarr",
+          "href": "https://readarr.com",
+          "subtitle": "Books",
+          "icon": "📚"
+        }
+      ]
+    },
+    {
+      "name": "Downloads",
+      "columns": 1,
+      "services": [
+        {
+          "name": "qBittorrent",
+          "href": "https://qbittorrent.org",
+          "subtitle": "Torrents",
+          "icon": "📥",
+          "ping": true
+        },
+        {
+          "name": "SABnzbd",
+          "href": "https://sabnzbd.org",
+          "subtitle": "Usenet",
+          "icon": "📦",
+          "ping": true
+        }
+      ]
+    },
+    {
+      "name": "Stats",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Tautulli",
+          "href": "https://tautulli.com",
+          "subtitle": "Plex analytics",
+          "icon": "📊"
+        },
+        {
+          "name": "Requestrr",
+          "href": "https://github.com/darkalfx/requestrr",
+          "subtitle": "Chat requests",
+          "icon": "🤖"
+        }
+      ]
+    }
+  ],
+  "bookmarks": [
+    {
+      "name": "TRaSH",
+      "links": [
+        {
+          "name": "TRaSH Guides",
+          "href": "https://trash-guides.info"
+        },
+        {
+          "name": "Servarr Wiki",
+          "href": "https://wiki.servarr.com"
+        }
+      ]
+    }
+  ]
+}

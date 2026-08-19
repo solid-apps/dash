@@ -1,0 +1,112 @@
+{
+  "@context": {
+    "dash": "https://solid-apps.github.io/dash/ns#"
+  },
+  "@type": "dash:Board",
+  "title": "Network",
+  "search": "duckduckgo",
+  "groups": [
+    {
+      "name": "DNS",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Pi-hole",
+          "href": "https://pi-hole.net",
+          "subtitle": "Ad-block DNS",
+          "icon": "🛑",
+          "ping": true
+        },
+        {
+          "name": "AdGuard Home",
+          "href": "https://adguard.com/adguard-home",
+          "subtitle": "DNS filtering",
+          "icon": "🛡️",
+          "ping": true
+        }
+      ]
+    },
+    {
+      "name": "Firewall & Router",
+      "columns": 1,
+      "services": [
+        {
+          "name": "OPNsense",
+          "href": "https://opnsense.org",
+          "subtitle": "Firewall",
+          "icon": "🔥",
+          "ping": true
+        },
+        {
+          "name": "pfSense",
+          "href": "https://pfsense.org",
+          "subtitle": "Firewall",
+          "icon": "🧱",
+          "ping": true
+        },
+        {
+          "name": "UniFi",
+          "href": "https://ui.com",
+          "subtitle": "Controller",
+          "icon": "📡",
+          "ping": true
+        }
+      ]
+    },
+    {
+      "name": "Proxy",
+      "columns": 1,
+      "services": [
+        {
+          "name": "Traefik",
+          "href": "https://traefik.io",
+          "subtitle": "Reverse proxy",
+          "icon": "🔀",
+          "ping": true
+        },
+        {
+          "name": "Nginx Proxy Manager",
+          "href": "https://nginxproxymanager.com",
+          "subtitle": "Proxy UI",
+          "icon": "🧭",
+          "ping": true
+        }
+      ]
+    },
+    {
+      "name": "Monitoring",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Uptime Kuma",
+          "href": "https://github.com/louislam/uptime-kuma",
+          "subtitle": "Uptime",
+          "icon": "⏱️",
+          "ping": true
+        },
+        {
+          "name": "SmokePing",
+          "href": "https://oss.oetiker.ch/smokeping",
+          "subtitle": "Latency",
+          "icon": "📶",
+          "ping": true
+        },
+        {
+          "name": "Grafana",
+          "href": "https://grafana.com",
+          "subtitle": "Graphs",
+          "icon": "📊",
+          "ping": true
+        },
+        {
+          "name": "Speedtest Tracker",
+          "href": "https://github.com/alexjustesen/speedtest-tracker",
+          "subtitle": "Bandwidth",
+          "icon": "🚀",
+          "ping": true
+        }
+      ]
+    }
+  ],
+  "bookmarks": []
+}

@@ -1,0 +1,92 @@
+{
+  "@context": {
+    "dash": "https://solid-apps.github.io/dash/ns#"
+  },
+  "@type": "dash:Board",
+  "title": "Start",
+  "search": "duckduckgo",
+  "weather": {
+    "lat": 51.51,
+    "lon": -0.13,
+    "label": "London, GB"
+  },
+  "groups": [],
+  "bookmarks": [
+    {
+      "name": "Daily",
+      "links": [
+        {
+          "name": "Gmail",
+          "href": "https://mail.google.com"
+        },
+        {
+          "name": "Calendar",
+          "href": "https://calendar.google.com"
+        },
+        {
+          "name": "YouTube",
+          "href": "https://youtube.com"
+        },
+        {
+          "name": "Maps",
+          "href": "https://maps.google.com"
+        }
+      ]
+    },
+    {
+      "name": "Read",
+      "links": [
+        {
+          "name": "Hacker News",
+          "href": "https://news.ycombinator.com"
+        },
+        {
+          "name": "Lobsters",
+          "href": "https://lobste.rs"
+        },
+        {
+          "name": "The Verge",
+          "href": "https://theverge.com"
+        },
+        {
+          "name": "Ars Technica",
+          "href": "https://arstechnica.com"
+        }
+      ]
+    },
+    {
+      "name": "Dev",
+      "links": [
+        {
+          "name": "GitHub",
+          "href": "https://github.com"
+        },
+        {
+          "name": "MDN",
+          "href": "https://developer.mozilla.org"
+        },
+        {
+          "name": "Stack Overflow",
+          "href": "https://stackoverflow.com"
+        }
+      ]
+    },
+    {
+      "name": "Social",
+      "links": [
+        {
+          "name": "Mastodon",
+          "href": "https://mastodon.social"
+        },
+        {
+          "name": "Reddit",
+          "href": "https://reddit.com"
+        },
+        {
+          "name": "Bluesky",
+          "href": "https://bsky.app"
+        }
+      ]
+    }
+  ]
+}

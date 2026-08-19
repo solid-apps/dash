@@ -1,0 +1,109 @@
+{
+  "@context": {
+    "dash": "https://solid-apps.github.io/dash/ns#"
+  },
+  "@type": "dash:Board",
+  "title": "Smart Home",
+  "search": "duckduckgo",
+  "groups": [
+    {
+      "name": "Hub",
+      "columns": 1,
+      "services": [
+        {
+          "name": "Home Assistant",
+          "href": "https://home-assistant.io",
+          "subtitle": "Automation hub",
+          "icon": "🏠"
+        },
+        {
+          "name": "Node-RED",
+          "href": "https://nodered.org",
+          "subtitle": "Flows",
+          "icon": "🧩"
+        },
+        {
+          "name": "openHAB",
+          "href": "https://openhab.org",
+          "subtitle": "Automation",
+          "icon": "🔧"
+        }
+      ]
+    },
+    {
+      "name": "Devices",
+      "columns": 1,
+      "services": [
+        {
+          "name": "Zigbee2MQTT",
+          "href": "https://zigbee2mqtt.io",
+          "subtitle": "Zigbee bridge",
+          "icon": "📡"
+        },
+        {
+          "name": "ESPHome",
+          "href": "https://esphome.io",
+          "subtitle": "ESP devices",
+          "icon": "🔌"
+        },
+        {
+          "name": "Mosquitto",
+          "href": "https://mosquitto.org",
+          "subtitle": "MQTT broker",
+          "icon": "📨"
+        }
+      ]
+    },
+    {
+      "name": "Cameras",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Frigate",
+          "href": "https://frigate.video",
+          "subtitle": "NVR + AI",
+          "icon": "🎥"
+        },
+        {
+          "name": "Scrypted",
+          "href": "https://scrypted.app",
+          "subtitle": "Camera hub",
+          "icon": "📹"
+        }
+      ]
+    },
+    {
+      "name": "Energy",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Grafana",
+          "href": "https://grafana.com",
+          "subtitle": "Energy graphs",
+          "icon": "📊"
+        },
+        {
+          "name": "Emporia",
+          "href": "https://web.emporiaenergy.com",
+          "subtitle": "Power monitor",
+          "icon": "⚡"
+        }
+      ]
+    }
+  ],
+  "bookmarks": [
+    {
+      "name": "Community",
+      "links": [
+        {
+          "name": "HA Forum",
+          "href": "https://community.home-assistant.io"
+        },
+        {
+          "name": "HACS",
+          "href": "https://hacs.xyz"
+        }
+      ]
+    }
+  ]
+}

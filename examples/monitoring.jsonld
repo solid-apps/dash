@@ -1,0 +1,98 @@
+{
+  "@context": {
+    "dash": "https://solid-apps.github.io/dash/ns#"
+  },
+  "@type": "dash:Board",
+  "title": "Monitoring",
+  "search": "duckduckgo",
+  "groups": [
+    {
+      "name": "Metrics",
+      "columns": 1,
+      "services": [
+        {
+          "name": "Grafana",
+          "href": "https://grafana.com",
+          "subtitle": "Dashboards",
+          "icon": "📊"
+        },
+        {
+          "name": "Prometheus",
+          "href": "https://prometheus.io",
+          "subtitle": "TSDB",
+          "icon": "📈"
+        },
+        {
+          "name": "InfluxDB",
+          "href": "https://influxdata.com",
+          "subtitle": "Time series",
+          "icon": "🗄️"
+        }
+      ]
+    },
+    {
+      "name": "Uptime",
+      "columns": 1,
+      "services": [
+        {
+          "name": "Uptime Kuma",
+          "href": "https://github.com/louislam/uptime-kuma",
+          "subtitle": "Monitors",
+          "icon": "⏱️",
+          "ping": true
+        },
+        {
+          "name": "Gatus",
+          "href": "https://gatus.io",
+          "subtitle": "Health dashboard",
+          "icon": "🩺",
+          "ping": true
+        },
+        {
+          "name": "Healthchecks",
+          "href": "https://healthchecks.io",
+          "subtitle": "Cron monitoring",
+          "icon": "✅",
+          "ping": true
+        }
+      ]
+    },
+    {
+      "name": "Logs",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Loki",
+          "href": "https://grafana.com/oss/loki",
+          "subtitle": "Log aggregation",
+          "icon": "🪵"
+        },
+        {
+          "name": "Dozzle",
+          "href": "https://dozzle.dev",
+          "subtitle": "Container logs",
+          "icon": "📜"
+        }
+      ]
+    },
+    {
+      "name": "Alerts",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Alertmanager",
+          "href": "https://prometheus.io/docs/alerting/latest/alertmanager",
+          "subtitle": "Routing",
+          "icon": "🚨"
+        },
+        {
+          "name": "ntfy",
+          "href": "https://ntfy.sh",
+          "subtitle": "Push notify",
+          "icon": "🔔"
+        }
+      ]
+    }
+  ],
+  "bookmarks": []
+}

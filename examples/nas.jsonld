@@ -1,0 +1,101 @@
+{
+  "@context": {
+    "dash": "https://solid-apps.github.io/dash/ns#"
+  },
+  "@type": "dash:Board",
+  "title": "NAS",
+  "search": "duckduckgo",
+  "groups": [
+    {
+      "name": "Files",
+      "columns": 1,
+      "services": [
+        {
+          "name": "Nextcloud",
+          "href": "https://nextcloud.com",
+          "subtitle": "Cloud storage",
+          "icon": "☁️"
+        },
+        {
+          "name": "Synology",
+          "href": "https://synology.com",
+          "subtitle": "DSM",
+          "icon": "🗄️"
+        },
+        {
+          "name": "TrueNAS",
+          "href": "https://truenas.com",
+          "subtitle": "ZFS storage",
+          "icon": "🐡"
+        }
+      ]
+    },
+    {
+      "name": "Photos",
+      "columns": 1,
+      "services": [
+        {
+          "name": "Immich",
+          "href": "https://immich.app",
+          "subtitle": "Photo backup",
+          "icon": "📷"
+        },
+        {
+          "name": "PhotoPrism",
+          "href": "https://photoprism.app",
+          "subtitle": "Photo library",
+          "icon": "🖼️"
+        }
+      ]
+    },
+    {
+      "name": "Sync & Backup",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Syncthing",
+          "href": "https://syncthing.net",
+          "subtitle": "File sync",
+          "icon": "🔄"
+        },
+        {
+          "name": "Duplicati",
+          "href": "https://duplicati.com",
+          "subtitle": "Backups",
+          "icon": "🗃️"
+        },
+        {
+          "name": "Kopia",
+          "href": "https://kopia.io",
+          "subtitle": "Snapshots",
+          "icon": "📸"
+        },
+        {
+          "name": "Restic",
+          "href": "https://restic.net",
+          "subtitle": "Backup",
+          "icon": "🧷"
+        }
+      ]
+    },
+    {
+      "name": "Documents",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Paperless-ngx",
+          "href": "https://docs.paperless-ngx.com",
+          "subtitle": "Documents",
+          "icon": "📄"
+        },
+        {
+          "name": "Stirling PDF",
+          "href": "https://stirlingpdf.com",
+          "subtitle": "PDF tools",
+          "icon": "📑"
+        }
+      ]
+    }
+  ],
+  "bookmarks": []
+}

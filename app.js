@@ -199,7 +199,12 @@ function srcParam() {
   try {
     const p = new URL(location.href).searchParams;
     const s = p.get('uri') || p.get('src');
-    return s && safeUrl(s);
+    if (!s) return null;
+    // A board locator may be relative (e.g. ?uri=examples/homelab.jsonld) —
+    // resolve it against the app, unlike the strict absolute-only gate we use
+    // for user-entered *service* links. Still http(s) only.
+    const abs = new URL(s, location.href);
+    return (abs.protocol === 'http:' || abs.protocol === 'https:') ? abs.href : null;
   } catch { return null; }
 }
 
@@ -271,12 +276,15 @@ function render() {
 
   const wrap = el('div');
 
-  // context banner while read-only (demo, or viewing a shared ?src= board)
+  // context banner while read-only (demo, or viewing a shared ?uri= board)
   if (readOnly) {
-    const note = viewingSrc
-      ? 'Viewing a shared board (read-only). Sign in to build your own on your pod.'
-      : (!me() ? 'Demo board — sign in to load and edit your own dashboard, stored on your Solid pod.' : null);
-    if (note) wrap.appendChild(el('div', { class: 'demo-note' }, note));
+    if (viewingSrc) {
+      wrap.appendChild(el('div', { class: 'demo-note' }, 'Viewing a shared board (read-only). Sign in to build your own on your pod.'));
+    } else if (!me()) {
+      const note = el('div', { class: 'demo-note' }, 'Demo board — sign in to load and edit your own, or ');
+      note.appendChild(el('a', { href: 'examples/', style: 'color:var(--accent);text-decoration:none;font-weight:600' }, 'browse 10 example layouts →'));
+      wrap.appendChild(note);
+    }
   }
 
   wrap.appendChild(renderHead());
