@@ -29,9 +29,17 @@ themeBtn.hidden = true;
 document.querySelector('.topbar-r').insertBefore(themeBtn, editBtn);
 themeBtn.addEventListener('click', appearanceModal);
 
+// "Make this mine" — shown when signed in while viewing a shared/example board
+// (?uri= / ?board=). Imports the viewed board to your pod and makes it editable,
+// rather than silently clobbering your board.
+const mineBtn = el('button', { class: 'tbtn', type: 'button', title: 'Save this board to your pod' }, 'Make this mine');
+mineBtn.hidden = true;
+document.querySelector('.topbar-r').insertBefore(mineBtn, editBtn);
+mineBtn.addEventListener('click', importToPod);
+
 const shareBtn = el('button', { class: 'tbtn', type: 'button', title: 'Copy a self-contained link to this board' }, 'Share');
 shareBtn.hidden = true;
-document.querySelector('.topbar-r').insertBefore(shareBtn, themeBtn);
+document.querySelector('.topbar-r').insertBefore(shareBtn, mineBtn);
 shareBtn.addEventListener('click', () => {
   const link = shareLink();
   K.copyText(link).then((ok) => {
@@ -325,6 +333,7 @@ function render() {
   editBtn.textContent = editing ? 'Done' : 'Edit';
   shareBtn.hidden = !(board.groups.length || board.bookmarks.length);
   themeBtn.hidden = readOnly || !editing;
+  mineBtn.hidden = !(me() && readOnly && viewingSrc);
   document.body.classList.toggle('editing', editing);
 
   const wrap = el('div');
@@ -910,6 +919,24 @@ function showStatic() {
   }
 }
 
+// Import the currently-viewed shared/example board into your pod, then switch
+// to the live editable copy (clears ?uri=/?board= from the URL so a refresh
+// loads your pod board).
+function importToPod() {
+  const webid = me();
+  if (!webid) return;
+  const incoming = board;
+  toast('Saving to your pod…');
+  discoverStorage(webid).then((storage) => {
+    if (!storage) throw new Error('could not find your pod storage');
+    URLDOC = storage + 'public/dash/board.jsonld';
+    readOnly = false; viewingSrc = false; board = incoming;
+    try { history.replaceState(null, '', location.pathname); } catch {}
+    return ensureContainer(storage + 'public/dash/').then(() => saveBoard());
+  }).then(() => { editing = false; render(); startSync(); toast('Saved — this board is now yours'); })
+    .catch((e) => { readOnly = true; viewingSrc = true; render(); toast('Couldn’t save: ' + e.message, { error: true }); });
+}
+
 function start() {
   const webid = me();
   if (!webid) { showStatic(); return; }
@@ -938,14 +965,18 @@ function start() {
 }
 function retryBtn() { const b = el('button', { class: 'btn', type: 'button' }, 'Retry'); b.addEventListener('click', start); return b; }
 
-document.addEventListener('xlogin', start);
+// A ?uri=/?board= link is always a read-only view — signing in must NOT replace
+// it with your pod board (that race showed a shared board as editable). When no
+// such link is present, signing in loads your pod board.
+const staticView = () => !!(SRC || queryBoard());
+document.addEventListener('xlogin', () => { if (!staticView()) start(); else render(); });
 document.addEventListener('xlogout', () => { stopSync(); URLDOC = null; showStatic(); });
 
 // xlogin restores sessions asynchronously; render the static board (island /
-// ?src= / sample) immediately so the page is never blank, then start() re-runs
-// on the xlogin event if signed in. A ?src= board is always shown as-is.
+// ?uri= / ?board= / sample) immediately so the page is never blank, then
+// start() runs on the xlogin event only when there's no shared-board link.
 showStatic();
-if (!SRC) setTimeout(() => { if (me()) start(); }, 600);
+if (!staticView()) setTimeout(() => { if (me()) start(); }, 600);
 
 /* ------------------------------ tiny hyperscript ------------------------------ */
 function el(tag, attrs, ...kids) {
