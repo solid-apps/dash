@@ -25,6 +25,7 @@ it before you commit.
 | **Bookmarks** | Compact pill links, grouped — the stuff you open a dozen times a day. |
 | **Info widgets** | A clock, a greeting, a web-search bar (DuckDuckGo / Google / Brave / Bing / Kagi), and live **weather** (via open-meteo — no key). |
 | **Status dots** | Opt-in per service: a lightweight **reachability** ping from your browser. |
+| **Appearance** | A **theme** (auto / dark / light) and an **accent colour**, stored in the board so they travel with it. In edit mode, the 🎨 button opens a palette of gethomepage-style hues; each example layout ships tinted to match its subject. |
 
 ## Honest about being browser-only
 

@@ -3,6 +3,8 @@
     "dash": "https://solid-apps.github.io/dash/ns#"
   },
   "@type": "dash:Board",
+  "theme": "auto",
+  "accent": "#0ea5e9",
   "title": "NAS",
   "search": "duckduckgo",
   "groups": [

@@ -24,9 +24,14 @@ const toast = K.toaster(document.getElementById('toast'), 'show');
 // "Share" copies a self-contained ?board= link (the whole board encoded in the
 // URL — no host, no pod needed to open it). Created in JS so index.html stays
 // static; shown by render() whenever there's a board worth sharing.
+const themeBtn = el('button', { class: 'tbtn', type: 'button', title: 'Theme & accent colour' }, '🎨');
+themeBtn.hidden = true;
+document.querySelector('.topbar-r').insertBefore(themeBtn, editBtn);
+themeBtn.addEventListener('click', appearanceModal);
+
 const shareBtn = el('button', { class: 'tbtn', type: 'button', title: 'Copy a self-contained link to this board' }, 'Share');
 shareBtn.hidden = true;
-document.querySelector('.topbar-r').insertBefore(shareBtn, editBtn);
+document.querySelector('.topbar-r').insertBefore(shareBtn, themeBtn);
 shareBtn.addEventListener('click', () => {
   const link = shareLink();
   K.copyText(link).then((ok) => {
@@ -122,7 +127,7 @@ function ensureContainer(u) {
 // Kept deliberately simple: groups of services, groups of bookmarks, and a
 // couple of widget settings.
 function emptyBoard() {
-  return { '@type': 'dash:Board', title: 'Dashboard', search: 'duckduckgo', weather: null, groups: [], bookmarks: [] };
+  return { '@type': 'dash:Board', title: 'Dashboard', search: 'duckduckgo', theme: 'auto', accent: null, weather: null, groups: [], bookmarks: [] };
 }
 
 // Coerce whatever the pod hands back into a valid board (untrusted input).
@@ -131,6 +136,8 @@ function normalize(raw) {
   if (!raw || typeof raw !== 'object') return b;
   if (typeof raw.title === 'string') b.title = raw.title.slice(0, 80);
   if (['duckduckgo', 'google', 'brave', 'bing', 'kagi'].includes(raw.search)) b.search = raw.search;
+  if (['auto', 'dark', 'light'].includes(raw.theme)) b.theme = raw.theme;
+  if (typeof raw.accent === 'string' && /^#[0-9a-fA-F]{6}$/.test(raw.accent.trim())) b.accent = raw.accent.trim().toLowerCase();
   if (raw.weather && typeof raw.weather === 'object' && isFinite(+raw.weather.lat) && isFinite(+raw.weather.lon)) {
     b.weather = { lat: +raw.weather.lat, lon: +raw.weather.lon, label: String(raw.weather.label || '').slice(0, 60) };
   }
@@ -265,13 +272,26 @@ function sampleBoard() {
 
 let clockTimer = null;
 
+// Theme override (auto/dark/light) + accent colour, applied from the board so
+// they travel with it. --accent-soft derives from --accent in CSS, so one
+// property recolours the UI; the theme sets/clears data-theme on <html>.
+function applyTheme() {
+  const root = document.documentElement;
+  if (board.theme && board.theme !== 'auto') root.setAttribute('data-theme', board.theme);
+  else root.removeAttribute('data-theme');
+  if (board.accent) root.style.setProperty('--accent', board.accent);
+  else root.style.removeProperty('--accent');
+}
+
 function render() {
+  applyTheme();
   if (clockTimer) { clearInterval(clockTimer); clockTimer = null; }
   app.replaceChildren();
   editBtn.hidden = readOnly;
   editBtn.classList.toggle('on', editing);
   editBtn.textContent = editing ? 'Done' : 'Edit';
   shareBtn.hidden = !(board.groups.length || board.bookmarks.length);
+  themeBtn.hidden = readOnly || !editing;
   document.body.classList.toggle('editing', editing);
 
   const wrap = el('div');
@@ -672,6 +692,70 @@ function weatherModal() {
       })
       .catch(() => toast('Geocoding failed', { error: true }));
   });
+}
+
+/* ------------------------------ appearance ------------------------------ */
+// gethomepage-style theming: a base theme override + an accent colour, both
+// stored in the board. Swatches echo the Tailwind hues homepage uses.
+const ACCENTS = [
+  ['Blue', '#3b82f6'], ['Indigo', '#6366f1'], ['Violet', '#8b5cf6'], ['Purple', '#a855f7'],
+  ['Pink', '#ec4899'], ['Rose', '#f43f5e'], ['Red', '#ef4444'], ['Orange', '#f97316'],
+  ['Amber', '#f59e0b'], ['Emerald', '#10b981'], ['Teal', '#14b8a6'], ['Cyan', '#06b6d4'],
+  ['Sky', '#0ea5e9'], ['Lime', '#84cc16'], ['Slate', '#64748b']
+];
+function appearanceModal() {
+  modalOpen = true;
+  const bg = el('div', { class: 'modal-bg' });
+  const box = el('div', { class: 'modal', role: 'dialog', 'aria-modal': 'true' });
+  box.appendChild(el('h2', {}, 'Appearance'));
+
+  const tf = el('div', { class: 'field' });
+  tf.appendChild(el('label', {}, 'Theme'));
+  const seg = el('div', { class: 'seg' });
+  ['auto', 'dark', 'light'].forEach((t) => {
+    const b = el('button', { type: 'button' }, t[0].toUpperCase() + t.slice(1));
+    if ((board.theme || 'auto') === t) b.classList.add('on');
+    b.addEventListener('click', () => {
+      board.theme = t;
+      seg.querySelectorAll('button').forEach((x) => x.classList.remove('on'));
+      b.classList.add('on');
+      applyTheme();
+    });
+    seg.appendChild(b);
+  });
+  tf.appendChild(seg);
+  box.appendChild(tf);
+
+  const af = el('div', { class: 'field' });
+  af.appendChild(el('label', {}, 'Accent colour'));
+  const sw = el('div', { class: 'swatches' });
+  const btns = {};
+  const markSel = (hex) => Object.keys(btns).forEach((k) => btns[k].classList.toggle('on', k === 'def' ? !hex : k === hex));
+  const def = el('button', { class: 'swatch def', type: 'button', title: 'Theme default' }, '∅');
+  def.addEventListener('click', () => { board.accent = null; applyTheme(); markSel(null); });
+  btns.def = def; sw.appendChild(def);
+  ACCENTS.forEach(([name, hex]) => {
+    const b = el('button', { class: 'swatch', type: 'button', title: name });
+    b.style.background = hex;
+    b.addEventListener('click', () => { board.accent = hex; applyTheme(); markSel(hex); });
+    btns[hex] = b; sw.appendChild(b);
+  });
+  markSel(board.accent);
+  af.appendChild(sw);
+  box.appendChild(af);
+
+  const actions = el('div', { class: 'modal-actions' });
+  actions.appendChild(el('div', {}));
+  const done = el('button', { class: 'btn primary', type: 'button' }, 'Done');
+  done.addEventListener('click', close);
+  actions.appendChild(done);
+  box.appendChild(actions);
+
+  bg.appendChild(box); document.body.appendChild(bg);
+  function close() { modalOpen = false; bg.remove(); document.removeEventListener('keydown', onKey); saveBoard(); render(); if (pendingSync) { pendingSync = false; applyRemote(); } }
+  function onKey(e) { if (e.key === 'Escape') { e.preventDefault(); close(); } }
+  bg.addEventListener('mousedown', (e) => { if (e.target === bg) close(); });
+  document.addEventListener('keydown', onKey);
 }
 
 /* ------------------------------ live sync ------------------------------ */

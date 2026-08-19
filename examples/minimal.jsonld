@@ -3,6 +3,8 @@
     "dash": "https://solid-apps.github.io/dash/ns#"
   },
   "@type": "dash:Board",
+  "theme": "auto",
+  "accent": "#64748b",
   "title": "Start",
   "search": "duckduckgo",
   "weather": {

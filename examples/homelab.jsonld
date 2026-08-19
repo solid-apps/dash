@@ -3,6 +3,8 @@
     "dash": "https://solid-apps.github.io/dash/ns#"
   },
   "@type": "dash:Board",
+  "theme": "auto",
+  "accent": "#6366f1",
   "title": "Homelab",
   "search": "duckduckgo",
   "weather": {
