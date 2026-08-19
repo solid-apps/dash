@@ -1,0 +1,79 @@
+# ◈ dash
+
+**A self-hosted-style start page for your Solid pod.** A
+[gethomepage](https://github.com/gethomepage/homepage)-flavoured dashboard —
+grouped service tiles, bookmarks, and live info widgets — but the whole board
+is one document **on your pod**, editable in place and synced across your
+devices.
+
+🔗 **Live demo:** https://solid-apps.github.io/dash/
+
+Open the page. Sign in from the estate's shared login (Solid OIDC or Nostr) and
+your board loads from `‹pod›/public/dash/board.jsonld`. Edit it in the browser
+— add a service, drop a bookmark, pick a weather city — and it writes straight
+back to the pod. Open dash on another device and it's already there; edits
+appear **live** while you watch, over solid-0.1 `Updates-Via`.
+
+Signed out, dash shows a real, clickable demo board so you can see the shape of
+it before you commit.
+
+## What's on the board
+
+| Piece | What it does |
+|---|---|
+| **Service groups** | Named groups of tiles (icon, name, subtitle) in one or two columns — your apps, servers, and tools. |
+| **Bookmarks** | Compact pill links, grouped — the stuff you open a dozen times a day. |
+| **Info widgets** | A clock, a greeting, a web-search bar (DuckDuckGo / Google / Brave / Bing / Kagi), and live **weather** (via open-meteo — no key). |
+| **Status dots** | Opt-in per service: a lightweight **reachability** ping from your browser. |
+
+## Honest about being browser-only
+
+Real Homepage runs a server that proxies to your services, so API keys stay
+server-side and CORS is bypassed. dash is a static app served from your pod —
+there is no proxy — so it is deliberate about what it shows:
+
+- ✅ **Real:** bookmarks, links, weather, clock, and web search all work for
+  real, no keys, nothing faked.
+- ⚠️ **Reachability, not status:** a service's status dot is an opaque `no-cors`
+  fetch with a timeout — it tells you the host *answered*, not its HTTP code.
+  The dot's tooltip says exactly that.
+- ❌ **Not here:** the API-key service widgets (Sonarr/Radarr/etc.). Those need
+  a server to hold the key and dodge CORS. When dash is served same-origin
+  behind a pod server (e.g. [jspod](https://github.com/JavaScriptSolidServer/jspod)),
+  that door opens — until then, dash stays honest.
+
+## The board document
+
+One JSON-LD file, human-readable, at `‹pod›/public/dash/board.jsonld`:
+
+```jsonc
+{
+  "@context": { "dash": "https://solid-apps.github.io/dash/ns#" },
+  "@type": "dash:Board",
+  "title": "Dashboard",
+  "search": "duckduckgo",
+  "weather": { "lat": 52.52, "lon": 13.41, "label": "Berlin, DE" },
+  "groups": [
+    { "name": "Media", "columns": 2, "services": [
+      { "name": "Jellyfin", "href": "https://jelly.example", "subtitle": "Movies & TV", "icon": "🎬", "ping": true }
+    ]}
+  ],
+  "bookmarks": [
+    { "name": "Dev", "links": [ { "name": "GitHub", "href": "https://github.com" } ] }
+  ]
+}
+```
+
+Edit it in-app, or edit the file directly — dash re-reads it live either way.
+
+## Architecture
+
+One `index.html` + `style.css` + `app.js`, no build step. Auth is the shared
+`xlogin` widget; the hardened helpers (escaping, safe loads, honest toasts, and
+the `Updates-Via` subscription manager) come from
+[SolidKit](https://solid-apps.github.io/kit/), vendored as `kit.js` + `kit.css`.
+Dark-first, light-mode aware, keyboard-friendly.
+
+## License
+
+[AGPL-3.0-only](LICENSE)

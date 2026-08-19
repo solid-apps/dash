@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>dash — your Solid pod dashboard</title>
+<meta name="description" content="A self-hosted-style start page for your Solid pod: grouped service tiles, bookmarks, and live info widgets. Config lives on your pod and syncs across devices.">
+<meta name="theme-color" content="#0b1020">
+<meta property="og:title" content="dash">
+<meta property="og:description" content="A self-hosted-style dashboard for your Solid pod — grouped services, bookmarks, and info widgets, configured on your pod and synced live.">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="kit.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="topbar">
+    <span class="brand">◈ dash</span>
+    <div class="topbar-r">
+      <button id="editBtn" class="tbtn" type="button" hidden>Edit</button>
+      <a class="root" href="../../../" title="Go to your pod root">↑ root</a>
+    </div>
+  </div>
+  <main id="app" aria-live="polite"></main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- xlogin: one-tag Solid/Nostr auth (same widget the estate shares).
+       Loaded before app.js so auth listeners are wired before it restores
+       a session. dash works signed-out as a read-only demo. -->
+  <script src="https://unpkg.com/xlogin"></script>
+  <!-- SolidKit v1.0 vendored — do not edit; canonical: solid-apps.github.io/kit -->
+  <script src="kit.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
