@@ -365,7 +365,7 @@ function render() {
       wrap.appendChild(el('div', { class: 'demo-note' }, 'Viewing a shared board (read-only). Sign in to build your own on your pod.'));
     } else if (!me()) {
       const note = el('div', { class: 'demo-note' }, 'Demo board — sign in to load and edit your own, or ');
-      note.appendChild(el('a', { href: 'examples/', style: 'color:var(--accent);text-decoration:none;font-weight:600' }, 'browse 10 example layouts →'));
+      note.appendChild(el('a', { href: 'examples/', style: 'color:var(--accent);text-decoration:none;font-weight:600' }, 'browse 11 example layouts →'));
       wrap.appendChild(note);
     }
   }

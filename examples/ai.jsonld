@@ -1,0 +1,218 @@
+{
+  "@context": {
+    "dash": "https://solid-apps.github.io/dash/ns#"
+  },
+  "@type": "dash:Board",
+  "theme": "auto",
+  "accent": "#a855f7",
+  "layout": "auto",
+  "background": {
+    "preset": "accent"
+  },
+  "title": "AI",
+  "search": "duckduckgo",
+  "groups": [
+    {
+      "name": "Chat",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Open WebUI",
+          "href": "https://openwebui.com",
+          "subtitle": "Local chat UI",
+          "icon": "di:open-webui",
+          "ping": true
+        },
+        {
+          "name": "LibreChat",
+          "href": "https://librechat.ai",
+          "subtitle": "Multi-model chat",
+          "icon": "di:librechat"
+        },
+        {
+          "name": "Jan",
+          "href": "https://jan.ai",
+          "subtitle": "Offline assistant",
+          "icon": "di:jan"
+        },
+        {
+          "name": "AnythingLLM",
+          "href": "https://anythingllm.com",
+          "subtitle": "Chat with your docs",
+          "icon": "di:anything-llm"
+        }
+      ]
+    },
+    {
+      "name": "Run models",
+      "columns": 1,
+      "services": [
+        {
+          "name": "Ollama",
+          "href": "https://ollama.com",
+          "subtitle": "Local model runner",
+          "icon": "di:ollama",
+          "ping": true
+        },
+        {
+          "name": "vLLM",
+          "href": "https://vllm.ai",
+          "subtitle": "Fast inference server",
+          "icon": "di:vllm",
+          "ping": true
+        },
+        {
+          "name": "LocalAI",
+          "href": "https://localai.io",
+          "subtitle": "OpenAI-compatible API",
+          "icon": "🧠",
+          "ping": true
+        }
+      ]
+    },
+    {
+      "name": "Images & Voice",
+      "columns": 2,
+      "services": [
+        {
+          "name": "ComfyUI",
+          "href": "https://www.comfy.org",
+          "subtitle": "Diffusion workflows",
+          "icon": "di:comfyui"
+        },
+        {
+          "name": "Stable Diffusion",
+          "href": "https://github.com/AUTOMATIC1111/stable-diffusion-webui",
+          "subtitle": "Image generation",
+          "icon": "🎨"
+        },
+        {
+          "name": "whisper.cpp",
+          "href": "https://github.com/ggerganov/whisper.cpp",
+          "subtitle": "Speech-to-text",
+          "icon": "🎙️"
+        },
+        {
+          "name": "Piper",
+          "href": "https://github.com/rhasspy/piper",
+          "subtitle": "Local text-to-speech",
+          "icon": "🔊"
+        }
+      ]
+    },
+    {
+      "name": "Agents & Flows",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Flowise",
+          "href": "https://flowiseai.com",
+          "subtitle": "Visual LLM apps",
+          "icon": "di:flowise"
+        },
+        {
+          "name": "n8n",
+          "href": "https://n8n.io",
+          "subtitle": "Workflow automation",
+          "icon": "di:n8n"
+        },
+        {
+          "name": "Langflow",
+          "href": "https://langflow.org",
+          "subtitle": "Agent builder",
+          "icon": "🕸️"
+        },
+        {
+          "name": "Dify",
+          "href": "https://dify.ai",
+          "subtitle": "LLMOps platform",
+          "icon": "🤖"
+        }
+      ]
+    },
+    {
+      "name": "Search & Vectors",
+      "columns": 2,
+      "services": [
+        {
+          "name": "SearXNG",
+          "href": "https://docs.searxng.org",
+          "subtitle": "Private meta-search",
+          "icon": "di:searxng",
+          "ping": true
+        },
+        {
+          "name": "Perplexica",
+          "href": "https://github.com/ItzCrazyKns/Perplexica",
+          "subtitle": "AI answer engine",
+          "icon": "🔮"
+        },
+        {
+          "name": "Qdrant",
+          "href": "https://qdrant.tech",
+          "subtitle": "Vector database",
+          "icon": "di:qdrant"
+        },
+        {
+          "name": "Chroma",
+          "href": "https://trychroma.com",
+          "subtitle": "Embeddings store",
+          "icon": "di:chroma"
+        }
+      ]
+    },
+    {
+      "name": "Your sovereignty",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Your Pod",
+          "href": "https://solid-apps.github.io/explorer/",
+          "subtitle": "Data & context, yours",
+          "icon": "❖"
+        },
+        {
+          "name": "Hugging Face",
+          "href": "https://huggingface.co",
+          "subtitle": "Open model weights",
+          "icon": "di:hugging-face"
+        },
+        {
+          "name": "Vaultwarden",
+          "href": "https://github.com/dani-garcia/vaultwarden",
+          "subtitle": "Keys & secrets",
+          "icon": "di:vaultwarden"
+        },
+        {
+          "name": "Tailscale",
+          "href": "https://tailscale.com",
+          "subtitle": "Private mesh access",
+          "icon": "di:tailscale"
+        }
+      ]
+    }
+  ],
+  "bookmarks": [
+    {
+      "name": "Learn",
+      "links": [
+        {
+          "name": "Ollama library",
+          "href": "https://ollama.com/library"
+        },
+        {
+          "name": "r/LocalLLaMA",
+          "href": "https://reddit.com/r/LocalLLaMA"
+        },
+        {
+          "name": "Hugging Face",
+          "href": "https://huggingface.co"
+        },
+        {
+          "name": "Awesome self-hosted AI",
+          "href": "https://github.com/e2b-dev/awesome-ai-agents"
+        }
+      ]
+    }
+  ]
+}

@@ -3,22 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>dash examples — 10 layouts</title>
-<meta name="description" content="Ten ready-made dash boards inspired by the most popular gethomepage layouts — homelab, media, network, monitoring, NAS, smart home, dev, productivity, minimal, and family.">
+<title>dash examples — 11 layouts</title>
+<meta name="description" content="Eleven ready-made dash boards inspired by the most popular gethomepage layouts — homelab, self-sovereign AI, media, network, monitoring, NAS, smart home, dev, productivity, minimal, and family.">
 <meta name="theme-color" content="#0b1020">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://solid-apps.github.io/dash/examples/">
 <meta property="og:site_name" content="dash">
-<meta property="og:title" content="dash examples — 10 layouts">
-<meta property="og:description" content="Ten ready-made dash boards inspired by the most popular gethomepage layouts — homelab, media, network, monitoring, NAS, smart home, dev, productivity, minimal, and family.">
+<meta property="og:title" content="dash examples — 11 layouts">
+<meta property="og:description" content="Eleven ready-made dash boards inspired by the most popular gethomepage layouts — homelab, self-sovereign AI, media, network, monitoring, NAS, smart home, dev, productivity, minimal, and family.">
 <meta property="og:image" content="https://solid-apps.github.io/dash/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="dash — ten ready-made dashboard layouts inspired by gethomepage.">
+<meta property="og:image:alt" content="dash — eleven ready-made dashboard layouts inspired by gethomepage.">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:url" content="https://solid-apps.github.io/dash/examples/">
-<meta name="twitter:title" content="dash examples — 10 layouts">
-<meta name="twitter:description" content="Ten ready-made dash boards inspired by the most popular gethomepage layouts.">
+<meta name="twitter:title" content="dash examples — 11 layouts">
+<meta name="twitter:description" content="Eleven ready-made dash boards inspired by the most popular gethomepage layouts.">
 <meta name="twitter:image" content="https://solid-apps.github.io/dash/og.png">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <style>
@@ -49,13 +49,19 @@
   .hero p { color:var(--dim); font-size:14.5px; line-height:1.6; margin-top:10px; max-width:64ch; }
   .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:16px; margin-top:26px; }
   .card { display:block; text-decoration:none; color:var(--text); background:var(--panel); border:1px solid var(--line);
-    border-radius:16px; padding:18px; transition:border-color .15s, transform .1s, background .15s; }
-  .card:hover { border-color:var(--accent); transform:translateY(-2px); background:var(--panel2); }
-  .card:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
-  .c-top { display:flex; align-items:center; justify-content:space-between; }
-  .c-emoji { font-size:26px; }
-  .c-meta { font-size:11px; color:var(--faint); font-weight:600; }
-  .card h2 { font-size:17px; font-weight:700; margin-top:12px; }
+    border-radius:16px; overflow:hidden; transition:border-color .15s, transform .1s, background .15s, box-shadow .15s; }
+  .card:hover { border-color:var(--ca,var(--accent)); transform:translateY(-2px); background:var(--panel2);
+    box-shadow:0 10px 30px -12px color-mix(in srgb, var(--ca,var(--accent)) 60%, transparent); }
+  .card:focus-visible { outline:2px solid var(--ca,var(--accent)); outline-offset:2px; }
+  /* preview band — the board's real background colours */
+  .c-bg { height:74px; display:flex; align-items:flex-end; padding:10px 12px; background-size:cover !important;
+    background-position:center !important; border-bottom:1px solid var(--line); }
+  .c-emoji { font-size:24px; line-height:1; filter:drop-shadow(0 1px 3px rgba(0,0,0,.55)); }
+  .c-body { padding:14px 18px 18px; }
+  .c-top { display:flex; align-items:baseline; justify-content:space-between; gap:10px; }
+  .c-meta { font-size:11px; color:var(--faint); font-weight:600; white-space:nowrap; }
+  .card h2 { font-size:17px; font-weight:700; }
+  .card:hover h2 { color:var(--ca,var(--accent)); }
   .card p { font-size:13px; color:var(--dim); line-height:1.5; margin-top:6px; min-height:39px; }
   .chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
   .chip { font-size:11px; font-weight:600; color:var(--dim); background:var(--panel2); border:1px solid var(--line);
@@ -68,69 +74,97 @@
   <div class="top"><span class="brand">◈ dash · examples</span><a href="../index.html">← dash</a></div>
   <main>
     <div class="hero">
-      <h1>Ten <b>dash</b> layouts</h1>
+      <h1>Eleven <b>dash</b> layouts</h1>
       <p>Ready-made boards inspired by the most popular gethomepage dashboards. Click one to open it in the dash viewer — then sign in and it seeds your own board, or copy the tiles you like. Each is a plain <code>dash:Board</code> JSON-LD file you can read, fork, or drop on your pod.</p>
     </div>
     <div class="grid">
-      <a class="card" href="../index.html?uri=examples/homelab.jsonld">
-        <div class="c-top"><span class="c-emoji">🖥️</span><span class="c-meta">12 services · 4 groups</span></div>
-        <h2>Homelab</h2>
-        <p>The classic self-hosted dashboard — Media, Network, Monitoring and Management in one board.</p>
-        <div class="chips"><span class="chip">Media</span><span class="chip">Network</span><span class="chip">Monitoring</span><span class="chip">Management</span></div>
+      <a class="card" style="--ca:#6366f1" href="../index.html?uri=examples/homelab.jsonld">
+        <div class="c-bg" style="background:radial-gradient(1100px 820px at 12% -8%, color-mix(in srgb, #6366f1 48%, transparent), transparent 55%), radial-gradient(1000px 720px at 95% 20%, color-mix(in srgb, #6366f1 32%, transparent), transparent 55%), radial-gradient(1000px 760px at 55% 120%, color-mix(in srgb, #6366f1 20%, transparent), transparent 55%), linear-gradient(180deg,#0a0a14,#0a0c17)"><span class="c-emoji">🖥️</span></div>
+        <div class="c-body">
+          <div class="c-top"><h2>Homelab</h2><span class="c-meta">12 services · 4 groups</span></div>
+          <p>The classic self-hosted dashboard — Media, Network, Monitoring and Management in one board.</p>
+          <div class="chips"><span class="chip">Media</span><span class="chip">Network</span><span class="chip">Monitoring</span><span class="chip">Management</span></div>
+        </div>
       </a>
-      <a class="card" href="../index.html?uri=examples/media.jsonld">
-        <div class="c-top"><span class="c-emoji">🎬</span><span class="c-meta">15 services · 5 groups</span></div>
-        <h2>Media Server</h2>
-        <p>The *arr stack — players, request portals, indexers, and downloaders for a full media pipeline.</p>
-        <div class="chips"><span class="chip">Players</span><span class="chip">Requests</span><span class="chip">Automation</span><span class="chip">Downloads</span><span class="chip">Stats</span></div>
+      <a class="card" style="--ca:#a855f7" href="../index.html?uri=examples/ai.jsonld">
+        <div class="c-bg" style="background:radial-gradient(1100px 820px at 12% -8%, color-mix(in srgb, #a855f7 48%, transparent), transparent 55%), radial-gradient(1000px 720px at 95% 20%, color-mix(in srgb, #a855f7 32%, transparent), transparent 55%), radial-gradient(1000px 760px at 55% 120%, color-mix(in srgb, #a855f7 20%, transparent), transparent 55%), linear-gradient(180deg,#0a0a14,#0a0c17)"><span class="c-emoji">🧠</span></div>
+        <div class="c-body">
+          <div class="c-top"><h2>Self-Sovereign AI</h2><span class="c-meta">23 services · 6 groups</span></div>
+          <p>Own your models, your data, your inference — a fully self-hosted AI stack that never phones home. Chat, run models, generate, and search, all on your own hardware and pod.</p>
+          <div class="chips"><span class="chip">Chat</span><span class="chip">Run models</span><span class="chip">Images &amp; Voice</span><span class="chip">Agents &amp; Flows</span><span class="chip">Search &amp; Vectors</span><span class="chip">Your sovereignty</span></div>
+        </div>
       </a>
-      <a class="card" href="../index.html?uri=examples/network.jsonld">
-        <div class="c-top"><span class="c-emoji">🌐</span><span class="c-meta">11 services · 4 groups</span></div>
-        <h2>Network &amp; Infra</h2>
-        <p>DNS, firewall, reverse proxies and link monitoring — every tile with a live reachability dot.</p>
-        <div class="chips"><span class="chip">DNS</span><span class="chip">Firewall &amp; Router</span><span class="chip">Proxy</span><span class="chip">Monitoring</span></div>
+      <a class="card" style="--ca:#f43f5e" href="../index.html?uri=examples/media.jsonld">
+        <div class="c-bg" style="background:radial-gradient(1100px 760px at 18% 0%, rgba(168,85,247,.44), transparent 55%), radial-gradient(1000px 720px at 92% 26%, rgba(236,72,153,.34), transparent 55%), radial-gradient(1200px 820px at 40% 120%, rgba(99,102,241,.3), transparent 55%), linear-gradient(180deg,#0c0518,#0a0a1e)"><span class="c-emoji">🎬</span></div>
+        <div class="c-body">
+          <div class="c-top"><h2>Media Server</h2><span class="c-meta">15 services · 5 groups</span></div>
+          <p>The *arr stack — players, request portals, indexers, and downloaders for a full media pipeline.</p>
+          <div class="chips"><span class="chip">Players</span><span class="chip">Requests</span><span class="chip">Automation</span><span class="chip">Downloads</span><span class="chip">Stats</span></div>
+        </div>
       </a>
-      <a class="card" href="../index.html?uri=examples/monitoring.jsonld">
-        <div class="c-top"><span class="c-emoji">📊</span><span class="c-meta">10 services · 4 groups</span></div>
-        <h2>Monitoring</h2>
-        <p>Observability at a glance — metrics, uptime, logs and alerting.</p>
-        <div class="chips"><span class="chip">Metrics</span><span class="chip">Uptime</span><span class="chip">Logs</span><span class="chip">Alerts</span></div>
+      <a class="card" style="--ca:#10b981" href="../index.html?uri=examples/network.jsonld">
+        <div class="c-bg" style="background:radial-gradient(1100px 760px at 12% 6%, rgba(16,185,129,.42), transparent 55%), radial-gradient(1000px 720px at 92% 18%, rgba(6,182,212,.36), transparent 55%), radial-gradient(1200px 820px at 50% 120%, rgba(59,130,246,.26), transparent 55%), linear-gradient(180deg,#04120f,#06101e)"><span class="c-emoji">🌐</span></div>
+        <div class="c-body">
+          <div class="c-top"><h2>Network &amp; Infra</h2><span class="c-meta">11 services · 4 groups</span></div>
+          <p>DNS, firewall, reverse proxies and link monitoring — every tile with a live reachability dot.</p>
+          <div class="chips"><span class="chip">DNS</span><span class="chip">Firewall &amp; Router</span><span class="chip">Proxy</span><span class="chip">Monitoring</span></div>
+        </div>
       </a>
-      <a class="card" href="../index.html?uri=examples/nas.jsonld">
-        <div class="c-top"><span class="c-emoji">💾</span><span class="c-meta">11 services · 4 groups</span></div>
-        <h2>NAS / Storage</h2>
-        <p>Files, photos, sync and backups — a storage-first board.</p>
-        <div class="chips"><span class="chip">Files</span><span class="chip">Photos</span><span class="chip">Sync &amp; Backup</span><span class="chip">Documents</span></div>
+      <a class="card" style="--ca:#f59e0b" href="../index.html?uri=examples/monitoring.jsonld">
+        <div class="c-bg" style="background:radial-gradient(1100px 760px at 14% 112%, rgba(249,115,22,.38), transparent 55%), radial-gradient(1000px 720px at 82% 100%, rgba(236,72,153,.3), transparent 55%), radial-gradient(1100px 820px at 60% -6%, rgba(139,92,246,.3), transparent 55%), linear-gradient(180deg,#170b1f,#0c0716)"><span class="c-emoji">📊</span></div>
+        <div class="c-body">
+          <div class="c-top"><h2>Monitoring</h2><span class="c-meta">10 services · 4 groups</span></div>
+          <p>Observability at a glance — metrics, uptime, logs and alerting.</p>
+          <div class="chips"><span class="chip">Metrics</span><span class="chip">Uptime</span><span class="chip">Logs</span><span class="chip">Alerts</span></div>
+        </div>
       </a>
-      <a class="card" href="../index.html?uri=examples/smarthome.jsonld">
-        <div class="c-top"><span class="c-emoji">🏠</span><span class="c-meta">10 services · 4 groups</span></div>
-        <h2>Smart Home</h2>
-        <p>Home automation hub — assistants, devices, cameras and energy.</p>
-        <div class="chips"><span class="chip">Hub</span><span class="chip">Devices</span><span class="chip">Cameras</span><span class="chip">Energy</span></div>
+      <a class="card" style="--ca:#0ea5e9" href="../index.html?uri=examples/nas.jsonld">
+        <div class="c-bg" style="background:radial-gradient(1200px 820px at 18% 0%, rgba(37,99,235,.42), transparent 55%), radial-gradient(1000px 720px at 92% 44%, rgba(20,184,166,.32), transparent 55%), radial-gradient(1000px 760px at 50% 120%, rgba(59,130,246,.2), transparent 55%), linear-gradient(180deg,#04101f,#061427)"><span class="c-emoji">💾</span></div>
+        <div class="c-body">
+          <div class="c-top"><h2>NAS / Storage</h2><span class="c-meta">11 services · 4 groups</span></div>
+          <p>Files, photos, sync and backups — a storage-first board.</p>
+          <div class="chips"><span class="chip">Files</span><span class="chip">Photos</span><span class="chip">Sync &amp; Backup</span><span class="chip">Documents</span></div>
+        </div>
       </a>
-      <a class="card" href="../index.html?uri=examples/dev.jsonld">
-        <div class="c-top"><span class="c-emoji">⚙️</span><span class="c-meta">13 services · 4 groups</span></div>
-        <h2>Developer</h2>
-        <p>Code, CI/CD, containers and docs — a workbench start page.</p>
-        <div class="chips"><span class="chip">Code</span><span class="chip">CI / CD</span><span class="chip">Containers</span><span class="chip">Docs &amp; Tools</span></div>
+      <a class="card" style="--ca:#f97316" href="../index.html?uri=examples/smarthome.jsonld">
+        <div class="c-bg" style="background:radial-gradient(1100px 760px at 14% 0%, rgba(239,68,68,.36), transparent 55%), radial-gradient(1000px 720px at 86% 92%, rgba(245,158,11,.3), transparent 55%), linear-gradient(180deg,#170806,#0e0a08)"><span class="c-emoji">🏠</span></div>
+        <div class="c-body">
+          <div class="c-top"><h2>Smart Home</h2><span class="c-meta">10 services · 4 groups</span></div>
+          <p>Home automation hub — assistants, devices, cameras and energy.</p>
+          <div class="chips"><span class="chip">Hub</span><span class="chip">Devices</span><span class="chip">Cameras</span><span class="chip">Energy</span></div>
+        </div>
       </a>
-      <a class="card" href="../index.html?uri=examples/productivity.jsonld">
-        <div class="c-top"><span class="c-emoji">✅</span><span class="c-meta">12 services · 4 groups</span></div>
-        <h2>Productivity</h2>
-        <p>Cloud, tasks, notes, documents and passwords — the office-in-a-pod board.</p>
-        <div class="chips"><span class="chip">Cloud</span><span class="chip">Tasks</span><span class="chip">Notes &amp; Docs</span><span class="chip">Utilities</span></div>
+      <a class="card" style="--ca:#8b5cf6" href="../index.html?uri=examples/dev.jsonld">
+        <div class="c-bg" style="background:radial-gradient(1100px 820px at 12% -8%, color-mix(in srgb, #8b5cf6 48%, transparent), transparent 55%), radial-gradient(1000px 720px at 95% 20%, color-mix(in srgb, #8b5cf6 32%, transparent), transparent 55%), radial-gradient(1000px 760px at 55% 120%, color-mix(in srgb, #8b5cf6 20%, transparent), transparent 55%), linear-gradient(180deg,#0a0a14,#0a0c17)"><span class="c-emoji">⚙️</span></div>
+        <div class="c-body">
+          <div class="c-top"><h2>Developer</h2><span class="c-meta">13 services · 4 groups</span></div>
+          <p>Code, CI/CD, containers and docs — a workbench start page.</p>
+          <div class="chips"><span class="chip">Code</span><span class="chip">CI / CD</span><span class="chip">Containers</span><span class="chip">Docs &amp; Tools</span></div>
+        </div>
       </a>
-      <a class="card" href="../index.html?uri=examples/minimal.jsonld">
-        <div class="c-top"><span class="c-emoji">✨</span><span class="c-meta">bookmarks & widgets</span></div>
-        <h2>Minimal Start Page</h2>
-        <p>No services — just a clock, weather, search, and the bookmarks you actually open. A clean new tab.</p>
-        <div class="chips"><span class="chip">14 bookmarks</span></div>
+      <a class="card" style="--ca:#14b8a6" href="../index.html?uri=examples/productivity.jsonld">
+        <div class="c-bg" style="background:radial-gradient(1100px 820px at 12% -8%, color-mix(in srgb, #14b8a6 48%, transparent), transparent 55%), radial-gradient(1000px 720px at 95% 20%, color-mix(in srgb, #14b8a6 32%, transparent), transparent 55%), radial-gradient(1000px 760px at 55% 120%, color-mix(in srgb, #14b8a6 20%, transparent), transparent 55%), linear-gradient(180deg,#0a0a14,#0a0c17)"><span class="c-emoji">✅</span></div>
+        <div class="c-body">
+          <div class="c-top"><h2>Productivity</h2><span class="c-meta">12 services · 4 groups</span></div>
+          <p>Cloud, tasks, notes, documents and passwords — the office-in-a-pod board.</p>
+          <div class="chips"><span class="chip">Cloud</span><span class="chip">Tasks</span><span class="chip">Notes &amp; Docs</span><span class="chip">Utilities</span></div>
+        </div>
       </a>
-      <a class="card" href="../index.html?uri=examples/family.jsonld">
-        <div class="c-top"><span class="c-emoji">👪</span><span class="c-meta">10 services · 4 groups</span></div>
-        <h2>Family / Household</h2>
-        <p>Shared media, photos, recipes, lists and reading for the whole house.</p>
-        <div class="chips"><span class="chip">Watch &amp; Listen</span><span class="chip">Photos</span><span class="chip">Kitchen &amp; Lists</span><span class="chip">Home</span></div>
+      <a class="card" style="--ca:#64748b" href="../index.html?uri=examples/minimal.jsonld">
+        <div class="c-bg" style="background:center/cover no-repeat url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1600&q=60')"><span class="c-emoji">✨</span></div>
+        <div class="c-body">
+          <div class="c-top"><h2>Minimal Start Page</h2><span class="c-meta">bookmarks & widgets</span></div>
+          <p>No services — just a clock, weather, search, and the bookmarks you actually open. A clean new tab.</p>
+          <div class="chips"><span class="chip">14 bookmarks</span></div>
+        </div>
+      </a>
+      <a class="card" style="--ca:#ec4899" href="../index.html?uri=examples/family.jsonld">
+        <div class="c-bg" style="background:radial-gradient(1100px 820px at 12% -8%, color-mix(in srgb, #ec4899 48%, transparent), transparent 55%), radial-gradient(1000px 720px at 95% 20%, color-mix(in srgb, #ec4899 32%, transparent), transparent 55%), radial-gradient(1000px 760px at 55% 120%, color-mix(in srgb, #ec4899 20%, transparent), transparent 55%), linear-gradient(180deg,#0a0a14,#0a0c17)"><span class="c-emoji">👪</span></div>
+        <div class="c-body">
+          <div class="c-top"><h2>Family / Household</h2><span class="c-meta">10 services · 4 groups</span></div>
+          <p>Shared media, photos, recipes, lists and reading for the whole house.</p>
+          <div class="chips"><span class="chip">Watch &amp; Listen</span><span class="chip">Photos</span><span class="chip">Kitchen &amp; Lists</span><span class="chip">Home</span></div>
+        </div>
       </a>
     </div>
     <div class="foot">
