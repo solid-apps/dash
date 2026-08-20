@@ -3,11 +3,11 @@
     "dash": "https://solid-apps.github.io/dash/ns#"
   },
   "@type": "dash:Board",
-  "theme": "auto",
-  "accent": "#6001d2",
+  "theme": "light",
+  "accent": "#7c3aed",
   "layout": "auto",
   "background": {
-    "preset": "accent"
+    "preset": "paper"
   },
   "title": "The Web Directory",
   "search": "duckduckgo",

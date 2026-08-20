@@ -5,11 +5,11 @@
   "@type": "dash:Board",
   "title": "Entertainment",
   "search": "duckduckgo",
-  "theme": "auto",
-  "accent": "#6001d2",
+  "theme": "light",
+  "accent": "#7c3aed",
   "layout": "auto",
   "background": {
-    "preset": "accent"
+    "preset": "paper"
   },
   "groups": [],
   "bookmarks": [

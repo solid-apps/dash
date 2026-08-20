@@ -85,8 +85,9 @@ function hashColor(s) {
 }
 function hostOf(u) { try { return new URL(u).hostname.replace(/^www\./, ''); } catch { return ''; } }
 
-// Built-in background presets — rich, layered gradient meshes (dark-oriented,
-// like the gethomepage showcases). "accent" derives from the board's colour.
+// Built-in background presets — layered gradient meshes. Most are dark-oriented
+// (like the gethomepage showcases); "accent" derives from the board's colour.
+// The LIGHT ones are pale/warm and pair with a light, dark-text palette.
 const PRESETS = {
   aurora: 'radial-gradient(1100px 760px at 12% 6%, rgba(16,185,129,.42), transparent 55%), radial-gradient(1000px 720px at 92% 18%, rgba(6,182,212,.36), transparent 55%), radial-gradient(1200px 820px at 50% 120%, rgba(59,130,246,.26), transparent 55%), linear-gradient(180deg,#04120f,#06101e)',
   nebula: 'radial-gradient(1100px 760px at 18% 0%, rgba(168,85,247,.44), transparent 55%), radial-gradient(1000px 720px at 92% 26%, rgba(236,72,153,.34), transparent 55%), radial-gradient(1200px 820px at 40% 120%, rgba(99,102,241,.3), transparent 55%), linear-gradient(180deg,#0c0518,#0a0a1e)',
@@ -94,8 +95,12 @@ const PRESETS = {
   ocean: 'radial-gradient(1200px 820px at 18% 0%, rgba(37,99,235,.42), transparent 55%), radial-gradient(1000px 720px at 92% 44%, rgba(20,184,166,.32), transparent 55%), radial-gradient(1000px 760px at 50% 120%, rgba(59,130,246,.2), transparent 55%), linear-gradient(180deg,#04101f,#061427)',
   ember: 'radial-gradient(1100px 760px at 14% 0%, rgba(239,68,68,.36), transparent 55%), radial-gradient(1000px 720px at 86% 92%, rgba(245,158,11,.3), transparent 55%), linear-gradient(180deg,#170806,#0e0a08)',
   mono: 'radial-gradient(1200px 860px at 50% -12%, rgba(255,255,255,.07), transparent 55%), linear-gradient(180deg,#0d0f16,#090b11)',
-  accent: 'radial-gradient(1100px 820px at 12% -8%, color-mix(in srgb, var(--accent) 48%, transparent), transparent 55%), radial-gradient(1000px 720px at 95% 20%, color-mix(in srgb, var(--accent) 32%, transparent), transparent 55%), radial-gradient(1000px 760px at 55% 120%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 55%), linear-gradient(180deg,#0a0a14,#0a0c17)'
+  accent: 'radial-gradient(1100px 820px at 12% -8%, color-mix(in srgb, var(--accent) 48%, transparent), transparent 55%), radial-gradient(1000px 720px at 95% 20%, color-mix(in srgb, var(--accent) 32%, transparent), transparent 55%), radial-gradient(1000px 760px at 55% 120%, color-mix(in srgb, var(--accent) 20%, transparent), transparent 55%), linear-gradient(180deg,#0a0a14,#0a0c17)',
+  paper: 'radial-gradient(1100px 800px at 14% -12%, rgba(251,191,36,.20), transparent 55%), radial-gradient(1000px 720px at 92% 8%, rgba(244,114,182,.16), transparent 55%), radial-gradient(1000px 780px at 50% 120%, rgba(129,140,248,.12), transparent 55%), linear-gradient(180deg,#fbf7f0,#f4ecdf)',
+  mist: 'radial-gradient(1100px 800px at 12% -10%, rgba(96,165,250,.18), transparent 55%), radial-gradient(1000px 720px at 92% 10%, rgba(167,139,250,.16), transparent 55%), radial-gradient(1000px 780px at 50% 120%, rgba(45,212,191,.12), transparent 55%), linear-gradient(180deg,#f5f7fc,#e9f0f8)'
 };
+// Presets that are light artwork — text/panels flip to a dark-on-light palette.
+const LIGHT_PRESETS = new Set(['paper', 'mist']);
 
 /* ------------------------------ storage ------------------------------ */
 
@@ -318,11 +323,14 @@ function applyTheme() {
 function applyBackground() {
   let layer = document.getElementById('dash-bg');
   const bg = board.background;
-  // image + gradient presets are rich/dark artwork → force the dark palette so
-  // text stays legible over them; a solid colour respects the current theme.
-  const rich = !!(bg && (bg.image || (bg.preset && PRESETS[bg.preset])));
+  // A light preset is pale artwork → force the light (dark-text) palette. Any
+  // other preset or an image is rich/dark artwork → force the dark palette so
+  // text stays legible over it; a solid colour respects the current theme.
+  const lightPreset = !!(bg && bg.preset && LIGHT_PRESETS.has(bg.preset) && PRESETS[bg.preset]);
+  const darkArt = !!(bg && !lightPreset && (bg.image || (bg.preset && PRESETS[bg.preset])));
   document.body.classList.toggle('custom-bg', !!bg);
-  document.body.classList.toggle('dark-bg', rich);
+  document.body.classList.toggle('dark-bg', darkArt);
+  document.body.classList.toggle('light-bg', lightPreset);
   if (!bg) { if (layer) layer.remove(); return; }
   if (!layer) { layer = el('div', { id: 'dash-bg' }); document.body.insertBefore(layer, document.body.firstChild); }
   // reset anything a prior kind of background left behind

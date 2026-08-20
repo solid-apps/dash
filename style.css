@@ -85,6 +85,17 @@ body.dark-bg {
   --shadow: 0 1px 2px rgba(0,0,0,0.45), 0 14px 34px rgba(0,0,0,0.4);
   background: var(--bg);
 }
+/* over a light/warm preset — force a dark-on-light palette (indie-web feel)
+   regardless of the OS theme, so a light board stays light everywhere */
+body.light-bg {
+  --bg: #f4ecdf;
+  --text: #241f17; --dim: rgba(36,31,23,0.66); --faint: rgba(36,31,23,0.44);
+  --line: rgba(40,30,15,0.12); --line-2: rgba(40,30,15,0.20);
+  --panel: rgba(40,30,15,0.035); --panel-2: rgba(40,30,15,0.06);
+  --unknown: rgba(36,31,23,0.26);
+  --shadow: 0 1px 2px rgba(40,30,15,0.08), 0 12px 30px rgba(40,30,15,0.10);
+  background: var(--bg);
+}
 
 /* ---------- top bar ---------- */
 .topbar {
