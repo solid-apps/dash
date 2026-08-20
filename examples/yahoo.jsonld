@@ -18,25 +18,25 @@
       "services": [
         {
           "name": "Mail",
-          "href": "https://mail.yahoo.com",
+          "href": "https://mail.proton.me",
           "subtitle": "Inbox",
           "icon": "✉️"
         },
         {
           "name": "News",
-          "href": "https://news.yahoo.com",
+          "href": "https://apnews.com",
           "subtitle": "Headlines",
           "icon": "📰"
         },
         {
           "name": "Finance",
-          "href": "https://finance.yahoo.com",
+          "href": "https://www.tradingview.com",
           "subtitle": "Markets",
           "icon": "📈"
         },
         {
           "name": "Sports",
-          "href": "https://sports.yahoo.com",
+          "href": "https://www.bbc.com/sport",
           "subtitle": "Scores",
           "icon": "🏈"
         },
@@ -53,14 +53,14 @@
           "icon": "🛍️"
         },
         {
-          "name": "Flickr",
-          "href": "https://www.flickr.com",
-          "subtitle": "Photos",
+          "name": "Photos",
+          "href": "https://pixelfed.org",
+          "subtitle": "Share & host",
           "icon": "📷"
         },
         {
           "name": "Search",
-          "href": "https://search.yahoo.com",
+          "href": "https://duckduckgo.com",
           "subtitle": "The whole web",
           "icon": "🔍"
         }
@@ -94,7 +94,7 @@
       "links": [
         {
           "name": "Finance",
-          "href": "https://finance.yahoo.com"
+          "href": "https://www.marketwatch.com"
         },
         {
           "name": "Jobs",
