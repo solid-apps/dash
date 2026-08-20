@@ -1,0 +1,219 @@
+{
+  "@context": {
+    "dash": "https://solid-apps.github.io/dash/ns#"
+  },
+  "@type": "dash:Board",
+  "theme": "auto",
+  "accent": "#22d3ee",
+  "layout": "auto",
+  "background": {
+    "preset": "nebula"
+  },
+  "title": "Arcade",
+  "search": "duckduckgo",
+  "groups": [
+    {
+      "name": "Cards, table & strategy",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Tiny GTO",
+          "href": "https://melvincarvalho.github.io/poker/",
+          "subtitle": "CFR+ poker trainer",
+          "icon": "♠️"
+        },
+        {
+          "name": "Tideholm",
+          "href": "https://melvincarvalho.github.io/tideholm/",
+          "subtitle": "Island-empire strategy",
+          "icon": "🏝️"
+        },
+        {
+          "name": "Chess",
+          "href": "https://nostr-client.github.io/chess/",
+          "subtitle": "Real-time chess over Nostr",
+          "icon": "♟️"
+        },
+        {
+          "name": "Bridge",
+          "href": "https://melvincarvalho.github.io/bridge/",
+          "subtitle": "Bridge with double-dummy",
+          "icon": "🌉"
+        }
+      ]
+    },
+    {
+      "name": "Neon arcade",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Neotris",
+          "href": "https://melvincarvalho.github.io/neotris/",
+          "subtitle": "Tetris tribute",
+          "icon": "🟦"
+        },
+        {
+          "name": "Neonoid",
+          "href": "https://melvincarvalho.github.io/neonoid/",
+          "subtitle": "Arkanoid tribute",
+          "icon": "🧱"
+        },
+        {
+          "name": "Neon Dash",
+          "href": "https://melvincarvalho.github.io/neondash/",
+          "subtitle": "Boulder Dash tribute",
+          "icon": "💎"
+        },
+        {
+          "name": "Neonlings",
+          "href": "https://melvincarvalho.github.io/neonlings/",
+          "subtitle": "Lemmings tribute",
+          "icon": "🐧"
+        },
+        {
+          "name": "Neon Scorch",
+          "href": "https://melvincarvalho.github.io/neonscorch/",
+          "subtitle": "Scorched Earth tribute",
+          "icon": "💥"
+        },
+        {
+          "name": "Neopolis",
+          "href": "https://melvincarvalho.github.io/neopolis/",
+          "subtitle": "Populous tribute",
+          "icon": "🌍"
+        },
+        {
+          "name": "Neociv",
+          "href": "https://melvincarvalho.github.io/neociv/",
+          "subtitle": "Civilization tribute",
+          "icon": "🏛️"
+        },
+        {
+          "name": "Neon Elite",
+          "href": "https://melvincarvalho.github.io/neonelite/",
+          "subtitle": "Elite tribute",
+          "icon": "🚀"
+        },
+        {
+          "name": "Neon Master",
+          "href": "https://melvincarvalho.github.io/neonmaster/",
+          "subtitle": "Dungeon Master tribute",
+          "icon": "🗝️"
+        },
+        {
+          "name": "Neon Miner",
+          "href": "https://melvincarvalho.github.io/neonminer/",
+          "subtitle": "Manic Miner tribute",
+          "icon": "⛏️"
+        },
+        {
+          "name": "Neodroid",
+          "href": "https://melvincarvalho.github.io/neodroid/",
+          "subtitle": "Paradroid tribute",
+          "icon": "🤖"
+        },
+        {
+          "name": "Bubble Keep",
+          "href": "https://melvincarvalho.github.io/bubblekeep/",
+          "subtitle": "Bubble Bobble tribute",
+          "icon": "🫧"
+        },
+        {
+          "name": "Neonglobs",
+          "href": "https://melvincarvalho.github.io/neonglobs/",
+          "subtitle": "Globulos tribute",
+          "icon": "🟢"
+        },
+        {
+          "name": "Sunstrip",
+          "href": "https://melvincarvalho.github.io/sunstrip/",
+          "subtitle": "OutRun tribute",
+          "icon": "🏎️"
+        }
+      ]
+    },
+    {
+      "name": "Puzzle & casual",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Candy Cascade",
+          "href": "https://solid-apps.github.io/candycascade/",
+          "subtitle": "Juicy match-3",
+          "icon": "🍬"
+        },
+        {
+          "name": "TileLoom",
+          "href": "https://solid-apps.github.io/tileloom/",
+          "subtitle": "Word-tile crossword",
+          "icon": "🔤"
+        },
+        {
+          "name": "Melrise",
+          "href": "https://nostrapps.github.io/melrise/",
+          "subtitle": "Tower stacking + leaderboard",
+          "icon": "🗼"
+        },
+        {
+          "name": "Asteroids",
+          "href": "https://nostrapps.github.io/asteroids/",
+          "subtitle": "The neon classic",
+          "icon": "🪨"
+        },
+        {
+          "name": "Liebrary",
+          "href": "https://melvincarvalho.github.io/liebrary/",
+          "subtitle": "Two truths & a lie, daily",
+          "icon": "🕵️"
+        }
+      ]
+    },
+    {
+      "name": "Empire & sim",
+      "columns": 2,
+      "services": [
+        {
+          "name": "Omertà",
+          "href": "https://solid-apps.github.io/mafia/",
+          "subtitle": "Build a crime empire",
+          "icon": "🎩"
+        },
+        {
+          "name": "Metropolis",
+          "href": "https://solid-apps.github.io/metropolis/",
+          "subtitle": "A tiny SimCity",
+          "icon": "🏙️"
+        },
+        {
+          "name": "Dungeonmastr",
+          "href": "https://melvincarvalho.github.io/dungeon/",
+          "subtitle": "Browser RPG crawler",
+          "icon": "🐉"
+        }
+      ]
+    }
+  ],
+  "bookmarks": [
+    {
+      "name": "More",
+      "links": [
+        {
+          "name": "Gamestr — decentralized gaming",
+          "href": "https://melvincarvalho.github.io/gamestr/"
+        },
+        {
+          "name": "All games ↗",
+          "href": "https://melvin.me/games/"
+        },
+        {
+          "name": "github.com/melvincarvalho",
+          "href": "https://github.com/melvincarvalho"
+        },
+        {
+          "name": "github.com/solid-apps",
+          "href": "https://github.com/solid-apps"
+        }
+      ]
+    }
+  ]
+}
