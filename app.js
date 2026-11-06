@@ -24,7 +24,7 @@ const toast = K.toaster(document.getElementById('toast'), 'show');
 // "Share" copies a self-contained ?board= link (the whole board encoded in the
 // URL — no host, no pod needed to open it). Created in JS so index.html stays
 // static; shown by render() whenever there's a board worth sharing.
-const themeBtn = el('button', { class: 'tbtn', type: 'button', title: 'Theme & accent colour' }, '🎨');
+const themeBtn = el('button', { class: 'tbtn', type: 'button', title: 'Theme & accent colour', 'aria-label': 'Appearance' }, '✦');
 themeBtn.hidden = true;
 document.querySelector('.topbar-r').insertBefore(themeBtn, editBtn);
 themeBtn.addEventListener('click', appearanceModal);
@@ -452,7 +452,7 @@ function renderSearch() {
   const bar = el('div', { class: 'searchbar' });
   const form = el('form');
   const inp = el('input', { class: 'si', type: 'text', placeholder: 'Search the web…', 'aria-label': 'Search the web' });
-  form.appendChild(el('span', { class: 'mag' }, '\u{1F50D}'));
+  form.appendChild(el('span', { class: 'mag', 'aria-hidden': 'true' }));
   form.appendChild(inp);
   const prov = el('button', { class: 'prov', type: 'button', title: 'Change search engine' }, SEARCH[board.search].label);
   prov.addEventListener('click', () => {
@@ -462,7 +462,9 @@ function renderSearch() {
     if (!readOnly) saveBoard();
     inp.focus();
   });
-  form.appendChild(prov);
+  const actions = el('div', { class: 'search-actions' },
+    el('kbd', { class: 'search-key', title: 'Press / to search', 'aria-hidden': 'true' }, '/'), prov);
+  form.appendChild(actions);
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const q = inp.value.trim();
@@ -471,6 +473,14 @@ function renderSearch() {
   bar.appendChild(form);
   return bar;
 }
+
+document.addEventListener('keydown', (e) => {
+  if (e.key !== '/' || e.metaKey || e.ctrlKey || e.altKey || modalOpen) return;
+  const t = e.target;
+  if (t && (t.isContentEditable || ['INPUT', 'TEXTAREA', 'SELECT'].includes(t.tagName))) return;
+  const input = document.querySelector('.si');
+  if (input) { e.preventDefault(); input.focus(); }
+});
 
 // Icon packs — opt-in, CORS-friendly SVGs from a public CDN. "di:" is
 // Dashboard Icons (full-colour self-hosted service logos, the gethomepage
